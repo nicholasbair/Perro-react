@@ -1,0 +1,19 @@
+/* Base */
+
+/* Dog card */
+.dog-card {
+  height: 200px;
+  width: 300px;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.dog-avatar {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
