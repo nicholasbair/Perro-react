@@ -1,5 +1,25 @@
 /* Base */
 
+/* Navbar */
+.navbar {
+  background-color: rgba(57, 129, 203, 0.7);
+}
+
+/* GoogleMaps background */
+#map {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: rgba(255, 255, 255, .1);
+}
+
+#container {
+  z-index: 1;
+}
+
 /* Dog card */
 .dog-card {
   height: 200px;
@@ -7,7 +27,8 @@
   padding: 10px;
   margin-left: 10px;
   border-radius: 4px;
-  background-color: #ffffff;
+  color: #f5f6f6;
+  background-color: rgba(57, 129, 203, 0.7);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, .1);
 }

@@ -5,7 +5,7 @@ import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-spark
 export default class DogCard extends Component {
   render() {
     let name = 'Rocko';
-    let color = 'red';
+    let color = 'black';
     let values = [2, 3, 5, 4, 3, 6, 7, 4];
 
     return (
