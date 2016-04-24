@@ -15,4 +15,8 @@ describe('HistoryFeed', () => {
   it('shows a history item', () => {
     expect(component.find('.history-item')).to.exist;
   });
+
+  it('shows a history title', () => {
+    expect(component.find('.history-feed-title')).to.exist;
+  });
 });
