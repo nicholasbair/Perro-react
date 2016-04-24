@@ -1,8 +1,13 @@
 /* Base */
+body {
+  font-family: 'Lato', sans-serif;
+}
 
 /* Navbar */
 .navbar {
   background-color: rgba(57, 129, 203, 0.7);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(57, 129, 203, 0.7);
 }
 
 /* GoogleMaps background */
@@ -25,11 +30,11 @@
   height: 200px;
   width: 300px;
   padding: 10px;
-  margin-left: 10px;
+  margin-left: 20px;
   border-radius: 4px;
   color: #f5f6f6;
   background-color: rgba(57, 129, 203, 0.7);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, .1);
 }
 
