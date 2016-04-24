@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import NavBarInstance from './NavBarInstance';
-import ActivityMenu from './ActivityMenu';
+import ActivityMenu from '../containers/ActivityMenu';
 import DogCard from './DogCard';
 import HistoryFeed from './HistoryFeed';
-import Modal from './Modal';
+import ActivityModal from '../containers/ActivityModal';
 
 export default class App extends Component {
   render() {
@@ -40,7 +40,7 @@ export default class App extends Component {
             </Col>
           </Row>
         </Grid>
-        <Modal />
+        <ActivityModal />
       </div>
     );
   }

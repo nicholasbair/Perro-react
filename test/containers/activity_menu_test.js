@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import ActivityMenu from '../../src/components/ActivityMenu';
+import ActivityMenu from '../../src/containers/ActivityMenu';
 
 describe('ActivityMenu', () => {
   let component;
