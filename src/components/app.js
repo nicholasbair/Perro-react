@@ -4,6 +4,7 @@ import NavBarInstance from './NavBarInstance';
 import ActivityMenu from './ActivityMenu';
 import DogCard from './DogCard';
 import HistoryFeed from './HistoryFeed';
+import Modal from './Modal';
 
 export default class App extends Component {
   render() {
@@ -14,10 +15,6 @@ export default class App extends Component {
       activityMenu: {
         paddingLeft: 0,
         height: '90vh'
-      },
-      cardRow: {
-        height: '90vh',
-        marginTop: '20px'
       },
       historyFeed: {
         paddingRight: 0,
@@ -33,7 +30,7 @@ export default class App extends Component {
             <Col xs={1} style={styles.activityMenu}>
               <ActivityMenu />
             </Col>
-            <Col xs={8} style={styles.cardRow}>
+            <Col xs={8} style={styles.fullHeight}>
               <Row>
                 <DogCard />
               </Row>
@@ -43,6 +40,7 @@ export default class App extends Component {
             </Col>
           </Row>
         </Grid>
+        <Modal />
       </div>
     );
   }

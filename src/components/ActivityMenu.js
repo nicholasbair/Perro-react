@@ -6,6 +6,13 @@ export default class ActivityMenu extends Component {
     return (
       <div className="activity-menu">
         <ActivityItem />
+        <ActivityItem />
+        <ActivityItem />
+        <ActivityItem />
+        <ActivityItem />
+        <ActivityItem />
+        <ActivityItem />
+        <ActivityItem />
       </div>
     );
   }

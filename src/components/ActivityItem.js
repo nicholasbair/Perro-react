@@ -4,7 +4,7 @@ export default class ActivityItem extends Component {
   render() {
     return (
       <div className="activity-item">
-        ActivityItem
+        <img className="activity-icon" src="http://placehold.it/50x50" alt="activity icon"></img>
       </div>
     );
   }
