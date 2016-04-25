@@ -7,10 +7,12 @@ import {
   Form,
   FormGroup,
   Button,
+  ButtonGroup,
   Col,
   ControlLabel,
   FormControl,
-  Checkbox
+  Checkbox,
+  Radio
 } from 'react-bootstrap';
 
 
@@ -30,18 +32,35 @@ const backdropStyle = {
 const dialogStyle = {
   position: 'absolute',
   width: 400,
-  border: '1px solid #e5e5e5',
-  backgroundColor: 'white',
+  border: '1px solid rgba(90, 85, 85, 0.9)',
+  borderRadius: '4px',
+  color: '#f5f6f6',
+  backgroundColor: 'rgba(90, 85, 85, 0.9)',
   boxShadow: '0 5px 15px rgba(0,0,0,.5)',
   padding: 20
 };
+
+const baseButtonStyle = {
+  backgroundColor: 'rgba(57, 129, 203, 0.7)',
+  border: '1px solid rgba(57, 129, 203, 0.7)',
+  color: '#f5f6f6'
+};
+
+const buttonJustifiedStyle = {
+  ...baseButtonStyle,
+  width: '33%'
+};
+
+const noPad = {
+  paddingLeft: 0
+}
 
 class ActivityModal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: true
     };
 
     this.close = this.close.bind(this);
@@ -51,6 +70,8 @@ class ActivityModal extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+
+    // this.props.postActivity
   }
 
   close() {
@@ -63,50 +84,63 @@ class ActivityModal extends Component {
 
   render() {
     return (
-      <div className='modal-example'>
+      <div className="activity-modal">
         <Button onClick={this.open}>
           Open Modal
         </Button>
 
         <Modal
-          aria-labelledby='modal-label'
+          aria-labelledby="modal-label"
           style={modalStyle}
           backdropStyle={backdropStyle}
           show={this.state.showModal}
           onHide={this.close}
         >
           <div style={dialogStyle}>
-            <h4 id='modal-label'>Log an activity</h4>
+            <Col xs={2} style={noPad}>
+              <img className="activity-icon" src="http://placehold.it/50x50"></img>
+            </Col>
+            <Col xs={10}>
+              <h2 id="modal-label" className="activity-label">Add a walk</h2>
+            </Col>
             <Form horizontal onSubmit={this.onSubmit}>
-              <FormGroup controlId="formHorizontalEmail">
-                <Col componentClass={ControlLabel} sm={2}>
-                  Email
+
+              <ButtonGroup justified>
+                <h3>Who did you walk?</h3>
+                  <Button style={buttonJustifiedStyle}>Rocko</Button>
+                  <Button style={buttonJustifiedStyle}>Sasha</Button>
+                  <Button style={buttonJustifiedStyle}>Rocko</Button>
+              </ButtonGroup>
+
+              <ButtonGroup justified>
+                <h3>How did it go?</h3>
+                  <Button style={buttonJustifiedStyle}>Ok</Button>
+                  <Button style={buttonJustifiedStyle}>Good</Button>
+                  <Button style={buttonJustifiedStyle}>Great</Button>
+              </ButtonGroup>
+
+              <FormGroup controlId="formHorizontalNotes">
+                <Col sm={12}>
+                  <h3>How long did you walk (minutes)?</h3>
                 </Col>
-                <Col sm={10}>
-                  <FormControl type="email" placeholder="Email" />
+                <Col sm={12}>
+                  <FormControl type="length" placeholder="Length" />
                 </Col>
               </FormGroup>
 
-              <FormGroup controlId="formHorizontalPassword">
-                <Col componentClass={ControlLabel} sm={2}>
-                  Password
+              <FormGroup controlId="formHorizontalNotes">
+                <Col sm={12}>
+                  <h3>Any notes?</h3>
                 </Col>
-                <Col sm={10}>
-                  <FormControl type="password" placeholder="Password" />
-                </Col>
-              </FormGroup>
-
-              <FormGroup>
-                <Col smOffset={2} sm={10}>
-                  <Checkbox>Remember me</Checkbox>
+                <Col sm={12}>
+                  <FormControl type="notes" placeholder="Notes" />
                 </Col>
               </FormGroup>
 
-              <FormGroup>
-                <Col smOffset={2} sm={10}>
-                  <Button type="submit">Submit</Button>
-                </Col>
-              </FormGroup>
+              <ButtonGroup vertical block>
+                <Button style={baseButtonStyle}>Add my walk!</Button>
+              </ButtonGroup>
+
             </Form>
           </div>
         </Modal>

@@ -102,3 +102,12 @@ body {
   border-radius: 50%;
   padding: 13px;
 }
+
+/* Activity modal */
+.activity-icon {
+  border-radius: 50%;
+}
+
+.activity-label {
+  margin-top: 10px !important;
+}
