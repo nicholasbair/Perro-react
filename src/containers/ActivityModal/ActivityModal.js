@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { postActivity } from '../actions/index';
+import styles from './styles';
 import {
   Modal,
   Form,
@@ -9,51 +10,8 @@ import {
   Button,
   ButtonGroup,
   Col,
-  ControlLabel,
-  FormControl,
-  Checkbox,
-  Radio
+  FormControl
 } from 'react-bootstrap';
-
-
-const modalStyle = {
-  position: 'fixed',
-  zIndex: 1040,
-  top: 0, bottom: 0, left: 0, right: 0
-};
-
-const backdropStyle = {
-  ...modalStyle,
-  zIndex: 'auto',
-  backgroundColor: '#000',
-  opacity: 0.5
-};
-
-const dialogStyle = {
-  position: 'absolute',
-  width: 400,
-  border: '1px solid rgba(90, 85, 85, 0.9)',
-  borderRadius: '4px',
-  color: '#f5f6f6',
-  backgroundColor: 'rgba(90, 85, 85, 0.9)',
-  boxShadow: '0 5px 15px rgba(0,0,0,.5)',
-  padding: 20
-};
-
-const baseButtonStyle = {
-  backgroundColor: 'rgba(57, 129, 203, 0.7)',
-  border: '1px solid rgba(57, 129, 203, 0.7)',
-  color: '#f5f6f6'
-};
-
-const buttonJustifiedStyle = {
-  ...baseButtonStyle,
-  width: '33%'
-};
-
-const noPad = {
-  paddingLeft: 0
-}
 
 class ActivityModal extends Component {
   constructor(props) {
@@ -91,14 +49,14 @@ class ActivityModal extends Component {
 
         <Modal
           aria-labelledby="modal-label"
-          style={modalStyle}
-          backdropStyle={backdropStyle}
+          style={styles.modalStyle}
+          backdropStyle={styles.backdropStyle}
           show={this.state.showModal}
           onHide={this.close}
         >
-          <div style={dialogStyle}>
-            <Col xs={2} style={noPad}>
-              <img className="activity-icon" src="http://placehold.it/50x50"></img>
+          <div style={styles.dialogStyle}>
+            <Col xs={2} style={styles.noPad}>
+              <img className="activity-icon" src="http://placehold.it/50x50" alt="activity icon"></img>
             </Col>
             <Col xs={10}>
               <h2 id="modal-label" className="activity-label">Add a walk</h2>
@@ -107,16 +65,16 @@ class ActivityModal extends Component {
 
               <ButtonGroup justified>
                 <h3>Who did you walk?</h3>
-                  <Button style={buttonJustifiedStyle}>Rocko</Button>
-                  <Button style={buttonJustifiedStyle}>Sasha</Button>
-                  <Button style={buttonJustifiedStyle}>Rocko</Button>
+                <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
+                <Button style={styles.buttonJustifiedStyle}>Sasha</Button>
+                <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
               </ButtonGroup>
 
               <ButtonGroup justified>
                 <h3>How did it go?</h3>
-                  <Button style={buttonJustifiedStyle}>Ok</Button>
-                  <Button style={buttonJustifiedStyle}>Good</Button>
-                  <Button style={buttonJustifiedStyle}>Great</Button>
+                <Button style={styles.buttonJustifiedStyle}>Ok</Button>
+                <Button style={styles.buttonJustifiedStyle}>Good</Button>
+                <Button style={styles.buttonJustifiedStyle}>Great</Button>
               </ButtonGroup>
 
               <FormGroup controlId="formHorizontalNotes">
@@ -138,7 +96,7 @@ class ActivityModal extends Component {
               </FormGroup>
 
               <ButtonGroup vertical block>
-                <Button style={baseButtonStyle}>Add my walk!</Button>
+                <Button style={styles.baseButtonStyle}>Add my walk!</Button>
               </ButtonGroup>
 
             </Form>
