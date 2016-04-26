@@ -12,8 +12,8 @@ export function openActivity(activity) {
 
 export function postActivity(props) {
   return {
-    type: POST_ACTIVITY,
-    payload: activity
+    // type: POST_ACTIVITY,
+    // payload: activity
   };
 }
 

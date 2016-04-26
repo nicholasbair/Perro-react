@@ -18,11 +18,15 @@ const INITIAL_STATE = {
       id: 4,
       name: 'vet'
     }
-  ]
+  ],
+  showActivityModal: false
 };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case OPEN_ACTIVITY:
+      return { ...state, showActivityModal: true };
+      break;
     case FETCH_ACTIVITIES:
       return { ...state };
       break;
