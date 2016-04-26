@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import NavBarInstance from './NavBarInstance';
 import ActivityMenu from '../containers/ActivityMenu';
 import DogCard from './DogCard';
-import HistoryFeed from './HistoryFeed';
+import HistoryFeed from '../containers/HistoryFeed';
 import ActivityModal from '../containers/ActivityModal';
 
 export default class App extends Component {

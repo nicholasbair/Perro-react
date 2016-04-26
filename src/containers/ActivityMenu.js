@@ -5,21 +5,21 @@ import { bindActionCreators } from 'redux';
 import ActivityItem from '../components/ActivityItem';
 
 class ActivityMenu extends Component {
-  renderMenu() {
-    return this.props.activities.map((activity) => {
-      return (
-        <ActivityItem
-          key={activity.activity}
-          onClick={() => this.props.logActivity(activity)}
-        />
-      );
-    });
-  }
+  // renderMenu() {
+  //   return this.props.activities.map((activity) => {
+  //     return (
+  //       <ActivityItem
+  //         key={activity.activity}
+  //         onClick={() => this.props.logActivity(activity)}
+  //       />
+  //     );
+  //   });
+  // }
 
   render() {
     return (
       <div className="activity-menu">
-        {this.renderMenu()}
+        {/*{this.renderMenu()}*/}
       </div>
     );
   }

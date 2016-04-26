@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import HistoryItem from './HistoryItem';
+import { connect } from 'react-redux';
+import { fetchHistory } from '../actions/index';
+import HistoryItem from '../components/HistoryItem';
 
-export default class HistoryFeed extends Component {
+class HistoryFeed extends Component {
+  componentWillMount() {
+    this.props.fetchHistory();
+  }
+
   render() {
+    const props = this.props;
+    console.log(props);
+
     return (
       <div className="history-feed">
         <div className="history-feed-title">
@@ -20,3 +29,5 @@ export default class HistoryFeed extends Component {
     );
   }
 }
+
+export default connect(null, { fetchHistory })(HistoryFeed);

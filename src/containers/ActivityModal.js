@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { postActivity } from '../actions/index';
 import styles from './styles';
+import { reduxForm } from 'redux-form';
 import {
   Modal,
   Form,
@@ -18,18 +19,11 @@ class ActivityModal extends Component {
     super(props);
 
     this.state = {
-      showModal: true
+      showModal: false
     };
 
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-  }
-
-  onFormSubmit(event) {
-    event.preventDefault();
-
-    // this.props.postActivity
   }
 
   close() {
@@ -41,6 +35,8 @@ class ActivityModal extends Component {
   }
 
   render() {
+    const { fields: { participants, assessment, duration, notes }, handleSubmit } = this.props;
+
     return (
       <div className="activity-modal">
         <Button onClick={this.open}>
@@ -61,23 +57,23 @@ class ActivityModal extends Component {
             <Col xs={10}>
               <h2 id="modal-label" className="activity-label">Add a walk</h2>
             </Col>
-            <Form horizontal onSubmit={this.onSubmit}>
+            <Form horizontal onSubmit={handleSubmit(this.props.postActivity)}>
 
-              <ButtonGroup justified>
+              <ButtonGroup justified {...participants}>
                 <h3>Who did you walk?</h3>
                 <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
                 <Button style={styles.buttonJustifiedStyle}>Sasha</Button>
                 <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
               </ButtonGroup>
 
-              <ButtonGroup justified>
+              <ButtonGroup justified {...assessment}>
                 <h3>How did it go?</h3>
                 <Button style={styles.buttonJustifiedStyle}>Ok</Button>
                 <Button style={styles.buttonJustifiedStyle}>Good</Button>
                 <Button style={styles.buttonJustifiedStyle}>Great</Button>
               </ButtonGroup>
 
-              <FormGroup controlId="formHorizontalNotes">
+              <FormGroup controlId="formHorizontalNotes" {...duration}>
                 <Col sm={12}>
                   <h3>How long did you walk (minutes)?</h3>
                 </Col>
@@ -86,7 +82,7 @@ class ActivityModal extends Component {
                 </Col>
               </FormGroup>
 
-              <FormGroup controlId="formHorizontalNotes">
+              <FormGroup controlId="formHorizontalNotes" {...notes}>
                 <Col sm={12}>
                   <h3>Any notes?</h3>
                 </Col>
@@ -96,7 +92,7 @@ class ActivityModal extends Component {
               </FormGroup>
 
               <ButtonGroup vertical block>
-                <Button style={styles.baseButtonStyle}>Add my walk!</Button>
+                <Button type="submit" style={styles.baseButtonStyle}>Add my walk!</Button>
               </ButtonGroup>
 
             </Form>
@@ -107,8 +103,13 @@ class ActivityModal extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ postActivity }, dispatch);
-}
+export default reduxForm({
+  form: 'ActivityModalForm',
+  fields: ['participants', 'assessment', 'duration', 'notes']
+}, null, { postActivity })(ActivityModal);
 
-export default connect(null, mapDispatchToProps)(ActivityModal);
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ postActivity }, dispatch);
+// }
+//
+// export default connect(null, mapDispatchToProps)(ActivityModal);
