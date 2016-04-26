@@ -32,7 +32,7 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_HISTORY:
-      return { ...state};
+      return { ...state };
       break;
     default:
       return state;

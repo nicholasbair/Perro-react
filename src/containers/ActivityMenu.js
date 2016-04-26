@@ -1,38 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logActivity } from '../actions/index';
-import { bindActionCreators } from 'redux';
+import { fetchActivities } from '../actions/index';
 import ActivityItem from '../components/ActivityItem';
 
 class ActivityMenu extends Component {
-  // renderMenu() {
-  //   return this.props.activities.map((activity) => {
-  //     return (
-  //       <ActivityItem
-  //         key={activity.activity}
-  //         onClick={() => this.props.logActivity(activity)}
-  //       />
-  //     );
-  //   });
-  // }
+  componentWillMount() {
+    this.props.fetchActivities();
+  }
+
+  renderMenuItems() {
+    return this.props.activities.map((activity) => {
+      return (
+        <ActivityItem key={activity.id} />
+      );
+    });
+  }
 
   render() {
     return (
       <div className="activity-menu">
-        {/*{this.renderMenu()}*/}
+        {this.renderMenuItems()}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
-    activities: state.activities
-  };
+  return { activities: state.activities.all };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logActivity }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActivityMenu);
+export default connect(mapStateToProps, { fetchActivities })(ActivityMenu);

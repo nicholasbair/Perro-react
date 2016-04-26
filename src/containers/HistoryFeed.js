@@ -22,9 +22,6 @@ class HistoryFeed extends Component {
   }
 
   render() {
-    const props = this.props;
-    console.log(props);
-
     return (
       <div className="history-feed">
         <div className="history-feed-title">
