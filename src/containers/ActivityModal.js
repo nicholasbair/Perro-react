@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 import { postActivity } from '../actions/index';
 import styles from './styles';
 import { reduxForm } from 'redux-form';
@@ -102,6 +102,16 @@ class ActivityModal extends Component {
     );
   }
 }
+
+// function validate(values) {
+//   const errors = {};
+//
+//   if (!values.participants) {
+//     errors.participants = 'Select a participant';
+//   }
+//
+//   return errors;
+// }
 
 export default reduxForm({
   form: 'ActivityModalForm',
