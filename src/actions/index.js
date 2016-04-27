@@ -1,11 +1,19 @@
-export const OPEN_ACTIVITY = 'OPEN_ACTIVITY';
+export const OPEN_ACTIVITY_MODAL = 'OPEN_ACTIVITY_MODAL';
+export const CLOSE_ACTIVITY_MODAL = 'CLOSE_ACTIVITY_MODAL';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 export const FETCH_HISTORY = 'FETCH_HISTORY';
 export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
 
-export function openActivity(activity) {
+export function openActivityModal(activity) {
   return {
-    type: OPEN_ACTIVITY,
+    type: OPEN_ACTIVITY_MODAL,
+    payload: activity
+  };
+}
+
+export function closeActivityModal(activity) {
+  return {
+    type: CLOSE_ACTIVITY_MODAL,
     payload: activity
   };
 }

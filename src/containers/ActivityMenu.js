@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchActivities, openActivity } from '../actions/index';
+import { fetchActivities, openActivityModal } from '../actions/index';
 import ActivityItem from '../components/ActivityItem';
 
 class ActivityMenu extends Component {
@@ -10,7 +10,7 @@ class ActivityMenu extends Component {
   }
 
   handleClick() {
-    this.props.openActivity();
+    this.props.openActivityModal();
   }
 
   renderMenuItems() {
@@ -38,7 +38,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ openActivity, fetchActivities }, dispatch);
+  return bindActionCreators({ openActivityModal, fetchActivities }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityMenu);

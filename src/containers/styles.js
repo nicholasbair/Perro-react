@@ -30,6 +30,13 @@ const styles = {
     color: '#f5f6f6'
   },
 
+  cancelButtonStyle: {
+    backgroundColor: 'rgba(170, 57, 57, 0.7)',
+    border: '1px solid rgba(170, 57, 57, 0.7)',
+    color: '#f5f6f6',
+    paddingTop: '10px'
+  },
+
   buttonJustifiedStyle: {
     backgroundColor: 'rgba(57, 129, 203, 0.7)',
     border: '1px solid rgba(57, 129, 203, 0.7)',
