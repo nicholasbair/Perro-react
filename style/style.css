@@ -140,6 +140,7 @@ body {
   border-bottom-right-radius: 4px;
   height: 100%;
   width: 75px;
+  padding-top: 10px;
   background-color: rgba(90, 85, 85, 0.9);
   box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.7);
 }
@@ -147,11 +148,19 @@ body {
 /* Activity item */
 .activity-item {
   height: 70px;
+  margin: 0px 10px;
 }
 
 .activity-item img {
   border-radius: 50%;
-  padding: 13px;
+  box-shadow: 0 rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease-in;
+}
+
+.activity-item img:hover {
+  border-radius: 50%;
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.7);
+  transition: box-shadow 0.3s ease-in;
 }
 
 /* Activity modal */
