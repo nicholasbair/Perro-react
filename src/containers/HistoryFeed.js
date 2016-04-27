@@ -74,7 +74,7 @@ class HistoryFeed extends Component {
           <div className="history-feed-title">
             <h3>Recent Activity
               <span
-              style={glyphiconRight}
+                style={glyphiconRight}
                 className="glyphicon glyphicon-chevron-right"
                 onClick={() => this.hideFeed()}
               >
