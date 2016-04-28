@@ -1,4 +1,7 @@
-import { FETCH_ACTIVITIES, OPEN_ACTIVITY_MODAL, CLOSE_ACTIVITY_MODAL } from '../actions/index';
+import {
+  FETCH_ACTIVITIES,
+  OPEN_ACTIVITY_MODAL,
+  CLOSE_ACTIVITY_MODAL } from '../actions/index';
 
 const INITIAL_STATE = {
   all: [

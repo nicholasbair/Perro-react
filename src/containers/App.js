@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHistory } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
-import NavBarInstance from './NavBarInstance';
-import ActivityMenu from '../containers/ActivityMenu';
-import DogCard from './DogCard';
-import HistoryFeed from '../containers/HistoryFeed';
-import ActivityModal from '../containers/ActivityModal';
-import HistoryModal from '../containers/HistoryModal';
+import NavBarInstance from '../components/NavBarInstance';
+import ActivityMenu from './ActivityMenu';
+import DogCard from '../components/DogCard';
+import HistoryFeed from './HistoryFeed';
+import ActivityModal from './ActivityModal';
+import HistoryModal from './HistoryModal';
 
 class App extends Component {
   componentWillMount() {

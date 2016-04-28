@@ -12,8 +12,7 @@ import {
   ButtonGroup,
   Col,
   Checkbox,
-  FormControl
-} from 'react-bootstrap';
+  FormControl } from 'react-bootstrap';
 
 class HistoryModal extends Component {
   postActivity() {
