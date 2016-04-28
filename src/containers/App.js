@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHistory } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
-import NavBarInstance from '../components/NavBarInstance';
+import TopNav from '../components/TopNav';
 import ActivityMenu from './ActivityMenu';
 import DogCard from '../components/DogCard';
 import HistoryFeed from './HistoryFeed';
@@ -54,7 +54,7 @@ class App extends Component {
 
     return (
       <div>
-        <NavBarInstance />
+        <TopNav />
         <Grid fluid style={styles.fullHeight}>
           <Row style={styles.fullHeight}>
             <Col xs={1} style={styles.activityMenu}>

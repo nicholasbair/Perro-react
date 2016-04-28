@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import { closeActivityModal } from '../actions/index';
-import styles from './styles';
+import styles from '../../style/styles';
 // import { reduxForm } from 'redux-form';
 import {
   Modal,
