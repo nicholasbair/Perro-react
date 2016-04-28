@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import { closeActivityModal } from '../actions/index';
+import { closeHistoryModal } from '../actions/index';
 import styles from './styles';
 // import { reduxForm } from 'redux-form';
 import {
@@ -15,13 +15,13 @@ import {
   FormControl
 } from 'react-bootstrap';
 
-class ActivityModal extends Component {
+class HistoryModal extends Component {
   postActivity() {
     console.log('post activity button pressed');
   }
 
   cancelModal() {
-    this.props.closeActivityModal();
+    this.props.closeHistoryModal();
   }
 
   render() {
@@ -35,7 +35,7 @@ class ActivityModal extends Component {
           aria-labelledby="modal-label"
           style={styles.modalStyle}
           backdropStyle={styles.backdropStyle}
-          show={this.props.showActivityModal}
+          show={this.props.showHistoryModal}
           onHide={this.close}
         >
           <div style={styles.dialogStyle}>
@@ -111,10 +111,10 @@ class ActivityModal extends Component {
 // }, null, { postActivity })(ActivityModal);
 
 function mapStateToProps(state) {
-  return { showActivityModal: state.activities.showActivityModal };
+  return { showHistoryModal: state.history.showHistoryModal };
 }
 
-export default connect(mapStateToProps, { closeActivityModal })(ActivityModal);
+export default connect(mapStateToProps, { closeHistoryModal })(HistoryModal);
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({ postActivity }, dispatch);

@@ -18,7 +18,7 @@ class ActivityMenu extends Component {
       return (
         <ActivityItem
           key={activity.id}
-          handleClick={this.handleClick.bind(this)}
+          handleClick={() => this.handleClick(this)}
         />
       );
     });

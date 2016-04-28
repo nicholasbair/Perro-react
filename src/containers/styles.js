@@ -34,7 +34,7 @@ const styles = {
     backgroundColor: 'rgba(170, 57, 57, 0.7)',
     border: '1px solid rgba(170, 57, 57, 0.7)',
     color: '#f5f6f6',
-    paddingTop: '10px'
+    marginTop: '10px'
   },
 
   buttonJustifiedStyle: {

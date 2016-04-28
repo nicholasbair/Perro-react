@@ -5,6 +5,7 @@ import ActivityMenu from '../containers/ActivityMenu';
 import DogCard from './DogCard';
 import HistoryFeed from '../containers/HistoryFeed';
 import ActivityModal from '../containers/ActivityModal';
+import HistoryModal from '../containers/HistoryModal';
 
 export default class App extends Component {
   render() {
@@ -41,6 +42,7 @@ export default class App extends Component {
           </Row>
         </Grid>
         <ActivityModal />
+        <HistoryModal />
       </div>
     );
   }

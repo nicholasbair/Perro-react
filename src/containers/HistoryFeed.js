@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchHistory } from '../actions/index';
+import { fetchHistory, openHistoryModal } from '../actions/index';
 import HistoryItem from '../components/HistoryItem';
 import cx from 'classnames';
 
@@ -25,6 +25,10 @@ class HistoryFeed extends Component {
     this.setState({ isHidden: false });
   }
 
+  handleClick() {
+    this.props.openHistoryModal();
+  }
+
   renderHistoryItems() {
     return this.props.history.map((item) => {
       return (
@@ -33,6 +37,7 @@ class HistoryFeed extends Component {
           type={item.type}
           participants={item.participants}
           duration={item.duration}
+          handleClick={() => this.handleClick()}
         />
       );
     });
@@ -93,4 +98,4 @@ function mapStateToProps(state) {
   return { history: state.history.all };
 }
 
-export default connect(mapStateToProps, { fetchHistory })(HistoryFeed);
+export default connect(mapStateToProps, { openHistoryModal, fetchHistory })(HistoryFeed);

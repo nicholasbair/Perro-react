@@ -1,5 +1,7 @@
 export const OPEN_ACTIVITY_MODAL = 'OPEN_ACTIVITY_MODAL';
 export const CLOSE_ACTIVITY_MODAL = 'CLOSE_ACTIVITY_MODAL';
+export const OPEN_HISTORY_MODAL = 'OPEN_HISTORY_MODAL';
+export const CLOSE_HISTORY_MODAL = 'CLOSE_HISTORY_MODAL';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 export const FETCH_HISTORY = 'FETCH_HISTORY';
 export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
@@ -14,6 +16,20 @@ export function openActivityModal(activity) {
 export function closeActivityModal(activity) {
   return {
     type: CLOSE_ACTIVITY_MODAL,
+    payload: activity
+  };
+}
+
+export function openHistoryModal(activity) {
+  return {
+    type: OPEN_HISTORY_MODAL,
+    payload: activity
+  };
+}
+
+export function closeHistoryModal(activity) {
+  return {
+    type: CLOSE_HISTORY_MODAL,
     payload: activity
   };
 }
