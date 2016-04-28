@@ -5,6 +5,7 @@ export const CLOSE_HISTORY_MODAL = 'CLOSE_HISTORY_MODAL';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 export const FETCH_HISTORY = 'FETCH_HISTORY';
 export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
+export const FETCH_DOGS = 'FETCH_DOGS';
 
 export function openActivityModal(activity) {
   return {
@@ -34,7 +35,7 @@ export function closeHistoryModal(activity) {
   };
 }
 
-export function postActivity(props) {
+export function postActivity() {
   return {
     // type: POST_ACTIVITY,
     // payload: activity
@@ -49,6 +50,13 @@ export function fetchHistory(history) {
 }
 
 export function fetchActivities(activities) {
+  return {
+    type: FETCH_ACTIVITIES,
+    payload: activities
+  };
+}
+
+export function fetchDogs(activities) {
   return {
     type: FETCH_ACTIVITIES,
     payload: activities

@@ -30,17 +30,15 @@ class HistoryFeed extends Component {
   }
 
   renderHistoryItems() {
-    return this.props.history.map((item) => {
-      return (
-        <HistoryItem
-          key={item.id}
-          type={item.type}
-          participants={item.participants}
-          duration={item.duration}
-          handleClick={() => this.handleClick()}
-        />
-      );
-    });
+    return this.props.history.map((item) =>
+      <HistoryItem
+        key={item.id}
+        type={item.type}
+        participants={item.participants}
+        duration={item.duration}
+        handleClick={() => this.handleClick()}
+      />
+    );
   }
 
   render() {

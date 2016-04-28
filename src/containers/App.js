@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchHistory } from '../actions/index';
+import { fetchHistory, fetchDogs } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import TopNav from '../components/TopNav';
 import ActivityMenu from './ActivityMenu';
@@ -12,6 +12,7 @@ import HistoryModal from './HistoryModal';
 class App extends Component {
   componentWillMount() {
     this.props.fetchHistory();
+    this.props.fetchDogs();
   }
 
   pullActivityDuration() {
@@ -27,17 +28,19 @@ class App extends Component {
   }
 
   renderDogCards() {
-    return this.props.history.map((item) => {
-      return (
-        <DogCard
-          key={item.id}
-          durations={this.pullActivityDuration()}
-        />
-      );
-    });
+    return this.props.dogs.map((dog) =>
+      <DogCard
+        key={dog.id}
+        name={dog.name}
+        tagline={dog.tagline}
+        img={dog.img}
+        durations={this.pullActivityDuration()}
+      />
+    );
   }
 
   render() {
+    console.log(this.props);
     const styles = {
       fullHeight: {
         height: '90vh'
@@ -79,11 +82,16 @@ class App extends Component {
 
 App.propTypes = {
   fetchHistory: PropTypes.func.isRequired,
-  history: PropTypes.array.isRequired
+  fetchDogs: PropTypes.func.isRequired,
+  history: PropTypes.array.isRequired,
+  dogs: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
-  return { history: state.history.all };
+  return {
+    history: state.history.all,
+    dogs: state.activities.dogs
+  };
 }
 
-export default connect(mapStateToProps, { fetchHistory })(App);
+export default connect(mapStateToProps, { fetchHistory, fetchDogs })(App);

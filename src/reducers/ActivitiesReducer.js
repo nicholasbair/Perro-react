@@ -1,5 +1,6 @@
 import {
   FETCH_ACTIVITIES,
+  FETCH_DOGS,
   OPEN_ACTIVITY_MODAL,
   CLOSE_ACTIVITY_MODAL } from '../actions/index';
 
@@ -22,6 +23,20 @@ const INITIAL_STATE = {
       name: 'vet'
     }
   ],
+  dogs: [
+    {
+      id: 1,
+      name: 'Rocko',
+      tagline: 'Badass Rescue',
+      img:  'rocko.jpeg'
+    },
+    {
+      id: 2,
+      name: 'Sasha',
+      tagline: 'Very Viszla',
+      img: 'sasha.png'
+    }
+  ],
   showActivityModal: false
 };
 
@@ -34,6 +49,9 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, showActivityModal: false };
       break;
     case FETCH_ACTIVITIES:
+      return { ...state };
+      break;
+    case FETCH_DOGS:
       return { ...state };
       break;
     default:

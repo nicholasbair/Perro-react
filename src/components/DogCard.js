@@ -7,9 +7,8 @@ import {
 
 export default class DogCard extends Component {
   render() {
-    let name = 'Rocko';
     let color = '#f5f6f6';
-    let values = this.props.durations;
+    let img = `./public/img/${this.props.img}`;
 
     return (
       <div>
@@ -19,17 +18,17 @@ export default class DogCard extends Component {
               <img
                 className="dog-avatar"
                 alt="dog avatar"
-                src="./public/img/rocko.jpeg"
+                src={img}
               >
               </img>
             </Col>
             <Col xs={7}>
-              <h2 className="dog-name">{name}</h2>
-              <h5 className="dog-tagline">Badass Rescue</h5>
+              <h2 className="dog-name">{this.props.name}</h2>
+              <h5 className="dog-tagline">{this.props.tagline}</h5>
             </Col>
           </Row>
           <div className="dog-activity-graph">
-            <Sparklines height={80} width={280} data={values}>
+            <Sparklines height={80} width={280} data={this.props.durations}>
               <SparklinesLine color={color} />
               <SparklinesReferenceLine type="avg" />
             </Sparklines>
@@ -41,5 +40,8 @@ export default class DogCard extends Component {
 }
 
 DogCard.propTypes = {
-  durations: PropTypes.array.isRequired
+  durations: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  tagline: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired
 };
