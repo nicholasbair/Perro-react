@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class HistoryItem extends Component {
   onUserClick() {
@@ -21,3 +21,10 @@ export default class HistoryItem extends Component {
     );
   }
 }
+
+HistoryItem.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  participants: PropTypes.array.isRequired,
+  duration: PropTypes.number.isRequired
+};

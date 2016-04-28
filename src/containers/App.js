@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchHistory } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
@@ -76,6 +76,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  fetchHistory: PropTypes.func.isRequired,
+  history: PropTypes.array.isRequired
+};
 
 function mapStateToProps(state) {
   return { history: state.history.all };

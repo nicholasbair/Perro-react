@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchHistory, openHistoryModal } from '../actions/index';
 import HistoryItem from '../components/HistoryItem';
@@ -93,6 +93,12 @@ class HistoryFeed extends Component {
     );
   }
 }
+
+HistoryFeed.propTypes = {
+  fetchHistory: PropTypes.func.isRequired,
+  openHistoryModal: PropTypes.func.isRequired,
+  history: PropTypes.array.isRequired
+};
 
 function mapStateToProps(state) {
   return { history: state.history.all };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import {
   Sparklines,
@@ -16,7 +16,8 @@ export default class DogCard extends Component {
         <Col xs={4} className="dog-card">
           <Row>
             <Col xs={5}>
-              <img className="dog-avatar"
+              <img
+                className="dog-avatar"
                 alt="dog avatar"
                 src="./public/img/rocko.jpeg"
               >
@@ -38,3 +39,7 @@ export default class DogCard extends Component {
     );
   }
 }
+
+DogCard.propTypes = {
+  durations: PropTypes.array.isRequired
+};

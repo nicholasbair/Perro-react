@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchActivities, openActivityModal } from '../actions/index';
 
@@ -29,6 +29,12 @@ class ActivityMenu extends Component {
     );
   }
 }
+
+ActivityMenu.propTypes = {
+  fetchActivities: PropTypes.func.isRequired,
+  openActivityModal: PropTypes.func.isRequired,
+  activities: PropTypes.array.isRequired
+};
 
 function mapStateToProps(state) {
   return { activities: state.activities.all };

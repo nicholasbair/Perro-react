@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import { closeHistoryModal } from '../actions/index';
@@ -11,22 +11,15 @@ import {
   Button,
   ButtonGroup,
   Col,
-  Checkbox,
   FormControl } from 'react-bootstrap';
 
 class HistoryModal extends Component {
-  postActivity() {
-    console.log('post activity button pressed');
-  }
-
   cancelModal() {
     this.props.closeHistoryModal();
   }
 
   render() {
     // const { fields: { participants, assessment, duration, notes }, handleSubmit } = this.props;
-    const props = this.props;
-    console.log(props);
 
     return (
       <div className="activity-modal">
@@ -44,53 +37,68 @@ class HistoryModal extends Component {
             <Col xs={10}>
               <h2 id="modal-label" className="activity-label">Add a walk</h2>
             </Col>
-              <Form horizontal >
-                {/*onSubmit={handleSubmit(this.props.postActivity)}*/}
+            <Form horizontal >
+              {/*onSubmit={handleSubmit(this.props.postActivity)}*/}
 
-                <ButtonGroup justified>
-                  <h3>Who did you walk?</h3>
-                  <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
-                  <Button style={styles.buttonJustifiedStyle}>Sasha</Button>
-                  <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
-                </ButtonGroup>
+              <ButtonGroup justified>
+                <h3>Who did you walk?</h3>
+                <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
+                <Button style={styles.buttonJustifiedStyle}>Sasha</Button>
+                <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
+              </ButtonGroup>
 
-                <ButtonGroup justified>
-                  <h3>How did it go?</h3>
-                  <Button style={styles.buttonJustifiedStyle}>Ok</Button>
-                  <Button style={styles.buttonJustifiedStyle}>Good</Button>
-                  <Button style={styles.buttonJustifiedStyle}>Great</Button>
-                </ButtonGroup>
+              <ButtonGroup justified>
+                <h3>How did it go?</h3>
+                <Button style={styles.buttonJustifiedStyle}>Ok</Button>
+                <Button style={styles.buttonJustifiedStyle}>Good</Button>
+                <Button style={styles.buttonJustifiedStyle}>Great</Button>
+              </ButtonGroup>
 
-                <FormGroup controlId="formHorizontalNotes">
-                  <Col sm={12}>
-                    <h3>How long did you walk (minutes)?</h3>
-                  </Col>
-                  <Col sm={12}>
-                    <FormControl type="length" placeholder="Length" />
-                  </Col>
-                </FormGroup>
+              <FormGroup controlId="formHorizontalNotes">
+                <Col sm={12}>
+                  <h3>How long did you walk (minutes)?</h3>
+                </Col>
+                <Col sm={12}>
+                  <FormControl type="length" placeholder="Length" />
+                </Col>
+              </FormGroup>
 
-                <FormGroup controlId="formHorizontalNotes">
-                  <Col sm={12}>
-                    <h3>Any notes?</h3>
-                  </Col>
-                  <Col sm={12}>
-                    <FormControl type="notes" placeholder="Notes" />
-                  </Col>
-                </FormGroup>
+              <FormGroup controlId="formHorizontalNotes">
+                <Col sm={12}>
+                  <h3>Any notes?</h3>
+                </Col>
+                <Col sm={12}>
+                  <FormControl type="notes" placeholder="Notes" />
+                </Col>
+              </FormGroup>
 
-                <ButtonGroup vertical block>
-                  <Button style={styles.baseButtonStyle} onClick={() => this.postActivity()}>Add my walk!</Button>
-                  <Button style={styles.cancelButtonStyle} onClick={() => this.cancelModal()}>Cancel</Button>
-                </ButtonGroup>
+              <ButtonGroup vertical block>
+                <Button
+                  style={styles.baseButtonStyle}
+                  onClick={() => this.postActivity()}
+                >
+                  Add my walk!
+                </Button>
+                <Button
+                  style={styles.cancelButtonStyle}
+                  onClick={() => this.cancelModal()}
+                >
+                  Cancel
+                </Button>
+              </ButtonGroup>
 
-              </Form>
+            </Form>
           </div>
         </Modal>
       </div>
     );
   }
 }
+
+HistoryModal.propTypes = {
+  closeHistoryModal: PropTypes.func.isRequired,
+  showHistoryModal: PropTypes.bool.isRequired
+};
 
 // TODO: add form validation
 // function validate(values) {
