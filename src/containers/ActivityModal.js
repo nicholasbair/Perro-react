@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import { closeActivityModal } from '../actions/index';
+import { closeActivityModal, fetchDogs } from '../actions/index';
 import styles from '../../style/styles';
 // import { reduxForm } from 'redux-form';
 import {
@@ -15,12 +15,37 @@ import {
 } from 'react-bootstrap';
 
 class ActivityModal extends Component {
+  componentWillMount() {
+    this.props.fetchDogs();
+  }
+
   cancelModal() {
     this.props.closeActivityModal();
   }
 
+  renderDogButtons() {
+    let width = 100 / this.props.dogs.length;
+    let buttonJustifiedStyle = {
+      backgroundColor: 'rgba(57, 129, 203, 0.7)',
+      border: '1px solid rgba(57, 129, 203, 0.7)',
+      color: '#f5f6f6',
+      width: `${width}%`
+    };
+
+    return this.props.dogs.map((dog) =>
+      <Button key={dog.id} style={buttonJustifiedStyle}>{dog.name}</Button>
+    );
+  }
+
   render() {
     // const { fields: { participants, assessment, duration, notes }, handleSubmit } = this.props;
+    let buttonJustifiedStyle = {
+      backgroundColor: 'rgba(57, 129, 203, 0.7)',
+      border: '1px solid rgba(57, 129, 203, 0.7)',
+      color: '#f5f6f6',
+      width: '33%'
+    };
+
     return (
       <div className="activity-modal">
         <Modal
@@ -42,16 +67,14 @@ class ActivityModal extends Component {
 
               <ButtonGroup justified>
                 <h3>Who did you walk?</h3>
-                <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
-                <Button style={styles.buttonJustifiedStyle}>Sasha</Button>
-                <Button style={styles.buttonJustifiedStyle}>Rocko</Button>
+                {this.renderDogButtons()}
               </ButtonGroup>
 
               <ButtonGroup justified>
                 <h3>How did it go?</h3>
-                <Button style={styles.buttonJustifiedStyle}>Ok</Button>
-                <Button style={styles.buttonJustifiedStyle}>Good</Button>
-                <Button style={styles.buttonJustifiedStyle}>Great</Button>
+                <Button style={buttonJustifiedStyle}>Ok</Button>
+                <Button style={buttonJustifiedStyle}>Good</Button>
+                <Button style={buttonJustifiedStyle}>Great</Button>
               </ButtonGroup>
 
               <FormGroup controlId="formHorizontalNotes">
@@ -97,7 +120,9 @@ class ActivityModal extends Component {
 
 ActivityModal.propTypes = {
   closeActivityModal: PropTypes.func.isRequired,
-  showActivityModal: PropTypes.bool.isRequired
+  fetchDogs: PropTypes.func.isRequired,
+  showActivityModal: PropTypes.bool.isRequired,
+  dogs: PropTypes.array.isRequired
 };
 
 // TODO: add form validation
@@ -118,10 +143,16 @@ ActivityModal.propTypes = {
 // }, null, { postActivity })(ActivityModal);
 
 function mapStateToProps(state) {
-  return { showActivityModal: state.activities.showActivityModal };
+  return {
+    showActivityModal: state.activities.showActivityModal,
+    dogs: state.activities.dogs
+  };
 }
 
-export default connect(mapStateToProps, { closeActivityModal })(ActivityModal);
+export default connect(mapStateToProps, {
+  closeActivityModal,
+  fetchDogs
+})(ActivityModal);
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({ postActivity }, dispatch);

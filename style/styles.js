@@ -37,13 +37,6 @@ const styles = {
     marginTop: '10px'
   },
 
-  buttonJustifiedStyle: {
-    backgroundColor: 'rgba(57, 129, 203, 0.7)',
-    border: '1px solid rgba(57, 129, 203, 0.7)',
-    color: '#f5f6f6',
-    width: '33%'
-  },
-
   noPad: {
     paddingLeft: 0
   }
