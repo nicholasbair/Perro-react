@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchHistory } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import NavBarInstance from './NavBarInstance';
 import ActivityMenu from '../containers/ActivityMenu';
@@ -7,7 +9,34 @@ import HistoryFeed from '../containers/HistoryFeed';
 import ActivityModal from '../containers/ActivityModal';
 import HistoryModal from '../containers/HistoryModal';
 
-export default class App extends Component {
+class App extends Component {
+  componentWillMount() {
+    this.props.fetchHistory();
+  }
+
+  pullActivityDuration() {
+    let data = this.props.history;
+    let durations = [];
+    data.forEach((item) => {
+      if (item.participants[1] === 'Rocko') {
+        durations.push(item.duration);
+      }
+    });
+
+    return durations;
+  }
+
+  renderDogCards() {
+    return this.props.history.map((item) => {
+      return (
+        <DogCard
+          key={item.id}
+          durations={this.pullActivityDuration()}
+        />
+      );
+    });
+  }
+
   render() {
     const styles = {
       fullHeight: {
@@ -33,7 +62,7 @@ export default class App extends Component {
             </Col>
             <Col xs={8} style={styles.fullHeight}>
               <Row>
-                <DogCard />
+                {this.renderDogCards()}
               </Row>
             </Col>
             <Col xs={3} style={styles.historyFeed}>
@@ -47,3 +76,9 @@ export default class App extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { history: state.history.all };
+}
+
+export default connect(mapStateToProps, { fetchHistory })(App);

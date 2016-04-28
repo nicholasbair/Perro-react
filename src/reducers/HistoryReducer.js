@@ -18,7 +18,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participants: ['Nick', 'Rocko'],
       assessment: 'good',
-      duration: 20,
+      duration: 15,
       notes: ''
     },
     {
@@ -26,7 +26,63 @@ const INITIAL_STATE = {
       type: 'walk',
       participants: ['Nick', 'Rocko'],
       assessment: 'good',
+      duration: 10,
+      notes: ''
+    },
+    {
+      id: 4,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
+      duration: 30,
+      notes: ''
+    },
+    {
+      id: 5,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
+      duration: 25,
+      notes: ''
+    },
+    {
+      id: 6,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
+      duration: 60,
+      notes: ''
+    },
+    {
+      id: 7,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
+      duration: 45,
+      notes: ''
+    },
+    {
+      id: 8,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
       duration: 20,
+      notes: ''
+    },
+    {
+      id: 9,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
+      duration: 25,
+      notes: ''
+    },
+    {
+      id: 10,
+      type: 'walk',
+      participants: ['Nick', 'Rocko'],
+      assessment: 'good',
+      duration: 30,
       notes: ''
     }
   ],

@@ -6,7 +6,7 @@ export default class DogCard extends Component {
   render() {
     let name = 'Rocko';
     let color = '#f5f6f6';
-    let values = [2, 3, 5, 4, 3, 6, 7, 4];
+    let values = this.props.durations;
 
     return (
       <div>
@@ -27,7 +27,7 @@ export default class DogCard extends Component {
             </Sparklines>
           </div>
         </Col>
-        <Col xs={4} className="dog-card">
+        {/*<Col xs={4} className="dog-card">
           <Row>
             <Col xs={5}>
               <img className="dog-avatar" alt="dog avatar" src="./public/img/rocko.jpeg"></img>
@@ -43,7 +43,7 @@ export default class DogCard extends Component {
               <SparklinesReferenceLine type="avg" />
             </Sparklines>
           </div>
-        </Col>
+        </Col>*/}
       </div>
     );
   }

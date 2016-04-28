@@ -37,8 +37,4 @@ function mapStateToProps(state) {
   return { activities: state.activities.all };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ openActivityModal, fetchActivities }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActivityMenu);
+export default connect(mapStateToProps, { openActivityModal, fetchActivities })(ActivityMenu);
