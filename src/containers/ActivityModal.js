@@ -25,7 +25,7 @@ class ActivityModal extends Component {
 
   renderDogButtons() {
     let width = 100 / this.props.dogs.length;
-    let buttonJustifiedStyle = {
+    let dogButtonStyle = {
       backgroundColor: 'rgba(57, 129, 203, 0.7)',
       border: '1px solid rgba(57, 129, 203, 0.7)',
       color: '#f5f6f6',
@@ -33,7 +33,7 @@ class ActivityModal extends Component {
     };
 
     return this.props.dogs.map((dog) =>
-      <Button key={dog.id} style={buttonJustifiedStyle}>{dog.name}</Button>
+      <Button key={dog.id} style={dogButtonStyle}>{dog.name}</Button>
     );
   }
 
@@ -65,7 +65,7 @@ class ActivityModal extends Component {
             <Form horizontal>
               {/*onSubmit={handleSubmit(this.props.postActivity)}*/}
 
-              <ButtonGroup justified>
+              <ButtonGroup justified className="buttonStyles">
                 <h3>Who did you walk?</h3>
                 {this.renderDogButtons()}
               </ButtonGroup>
@@ -100,7 +100,7 @@ class ActivityModal extends Component {
                   style={styles.baseButtonStyle}
                   onClick={() => this.postActivity()}
                 >
-                  Add my walk!
+                  Add my activity!
                 </Button>
                 <Button
                   style={styles.cancelButtonStyle}

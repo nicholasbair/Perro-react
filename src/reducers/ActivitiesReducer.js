@@ -8,19 +8,19 @@ const INITIAL_STATE = {
   all: [
     {
       id: 1,
-      name: 'walk'
+      type: 'walk'
     },
     {
       id: 2,
-      name: 'run'
+      type: 'run'
     },
     {
       id: 3,
-      name: 'park'
+      type: 'park'
     },
     {
       id: 4,
-      name: 'vet'
+      type: 'vet'
     }
   ],
   dogs: [

@@ -13,8 +13,9 @@ class ActivityMenu extends Component {
 
   renderMenuItems() {
     return this.props.activities.map((activity) =>
-      <div className="activity-item" key={activity.id}>
-        <img onClick={() => this.handleClick()} className="activity-icon" src="http://placehold.it/50x50" alt="activity icon"></img>
+      <div className="activity-item" key={activity.id} onClick={() => this.handleClick()}>
+        <div className="activity-letter">{activity.type.charAt(0).toUpperCase()}</div>
+        <div className="activity-word">{activity.type}</div>
       </div>
     );
   }

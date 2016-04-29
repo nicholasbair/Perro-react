@@ -40,7 +40,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     const styles = {
       fullHeight: {
         height: '90vh'
