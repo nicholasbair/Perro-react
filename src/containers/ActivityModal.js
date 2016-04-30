@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { closeActivityModal, fetchDogs, postActivity } from '../actions/index';
+import { postActivity } from '../actions/index';
 import styles from '../../style/styles';
 import { reduxForm } from 'redux-form';
 import {
@@ -14,24 +14,20 @@ import {
 } from 'react-bootstrap';
 
 class ActivityModal extends Component {
-  componentWillMount() {
-    this.props.fetchDogs();
-  }
-
   cancelModal() {
     this.props.closeModal();
   }
 
   renderDogRadios() {
-    const { fields: { participants } } = this.props;
+    const { fields: { participant } } = this.props;
 
     return this.props.dogs.map((dog) =>
       <Radio
         inline
         key={dog.id}
         value={dog.id}
-        checked={participants.value === dog.id}
-        {...participants}
+        checked={participant.value === dog.id}
+        {...participant}
       >
         {dog.name}
       </Radio>
@@ -119,7 +115,6 @@ class ActivityModal extends Component {
 
 ActivityModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  fetchDogs: PropTypes.func.isRequired,
   postActivity: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired,
@@ -147,5 +142,5 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'ModalForm',
-  fields: ['participants', 'assessment', 'duration', 'notes']
-}, mapStateToProps, { postActivity, closeActivityModal, fetchDogs })(ActivityModal);
+  fields: ['participant', 'assessment', 'duration', 'notes']
+}, mapStateToProps, { postActivity })(ActivityModal);

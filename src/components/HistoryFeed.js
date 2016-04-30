@@ -20,16 +20,9 @@ export default class HistoryFeed extends Component {
 
   renderHistoryItems() {
     return this.props.history.map((item) =>
-      // let activityType = this.props.type;
-      // const participant = this.props.participants[0];
-      // const dog = this.props.participants[1];
-      // const duration = this.props.duration;
-
-      // const desc = `${participant} ${type}ed ${dog} for ${duration} minutes.`;
-
-      <div className="history-item" onClick={() => this.props.openModal()}>
+      <div className="history-item" key={item.id} onClick={() => this.props.openModal()}>
         <img className="user-avatar" src="http://placehold.it/50x50" alt="user avatar"></img>
-        {item.participant} {item.type} {item.particants} for {item.duration}.
+        Nick {item.type}ed {item.participant} for {item.duration} minutes.
       </div>
     );
   }

@@ -18,7 +18,7 @@ class App extends Component {
     let data = this.props.history;
     let durations = [];
     data.forEach((item) => {
-      if (item.participants[1] === 'Rocko') {
+      if (item.participant === 'Rocko') {
         durations.push(item.duration);
       }
     });
@@ -77,7 +77,10 @@ class App extends Component {
             </Col>
           </Row>
         </Grid>
-        <ActivityModal closeModal={this.props.closeModal} />
+        <ActivityModal
+          closeModal={this.props.closeModal}
+          dogs={this.props.dogs}
+        />
       </div>
     );
   }

@@ -44,7 +44,7 @@ const INITIAL_STATE = {
     {
       id: 1,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 20,
       notes: ''
