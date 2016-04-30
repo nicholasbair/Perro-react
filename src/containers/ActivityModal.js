@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { postActivity } from '../actions/index';
 import styles from '../../style/styles';
 import { reduxForm } from 'redux-form';
+import uuid from 'uuid-v4';
 import {
   Modal,
   Form,
@@ -15,7 +16,13 @@ import {
 
 class ActivityModal extends Component {
   onPostActivity() {
-    this.props.postActivity();
+    let data = this.props.values;
+    data.id = uuid();
+    if (data.notes === undefined) {
+      data.notes = '';
+    }
+    console.log(data);
+    this.props.postActivity(data);
     this.props.resetForm();
   }
 
@@ -113,7 +120,11 @@ class ActivityModal extends Component {
                   <h3>How long did you walk (minutes)?</h3>
                 </Col>
                 <Col sm={12}>
-                  <FormControl type="duration" placeholder="Length" {...duration} />
+                  <FormControl
+                    type="duration"
+                    placeholder="Length"
+                    {...duration}
+                  />
                 </Col>
                 <Col sm={12}>
                   <div className="text-help">{duration.touched ? duration.error : ''}</div>

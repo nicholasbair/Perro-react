@@ -44,6 +44,7 @@
     "react-tabs": "^0.5.3",
     "redux": "^3.0.4",
     "redux-form": "^5.1.4",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "uuid-v4": "^0.1.0"
   }
 }
