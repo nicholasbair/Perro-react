@@ -5,17 +5,16 @@ export const FETCH_HISTORY = 'FETCH_HISTORY';
 export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
 export const FETCH_DOGS = 'FETCH_DOGS';
 
-export function openModal(activity) {
+export function openModal(activityType) {
   return {
     type: OPEN_MODAL,
-    payload: activity
+    payload: activityType
   };
 }
 
-export function closeModal(activity) {
+export function closeModal() {
   return {
-    type: CLOSE_MODAL,
-    payload: activity
+    type: CLOSE_MODAL
   };
 }
 

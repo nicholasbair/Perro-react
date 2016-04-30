@@ -12,10 +12,20 @@ import INITIAL_STATE from '../mock';
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case OPEN_MODAL:
-      return { ...state, showModal: true };
+      return Object.assign({}, state, {
+        modal: {
+          show: true,
+          type: action.payload
+        }
+      });
       break;
     case CLOSE_MODAL:
-      return { ...state, showModal: false };
+      return Object.assign({}, state, {
+        modal: {
+          show: false,
+          type: null
+        }
+      });
       break;
     case FETCH_ACTIVITIES:
       return { ...state };
@@ -30,8 +40,8 @@ export default function(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         showModal: false,
         history: [
-          ...state.history,
-          action.payload
+          action.payload,
+          ...state.history
         ]
       });
       break;

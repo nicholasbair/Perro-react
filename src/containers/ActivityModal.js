@@ -18,11 +18,13 @@ class ActivityModal extends Component {
   onPostActivity() {
     let data = this.props.values;
     data.id = uuid();
+    data.type = this.props.activityType;
     if (data.notes === undefined) {
       data.notes = '';
     }
-    console.log(data);
+
     this.props.postActivity(data);
+    this.props.closeModal();
     this.props.resetForm();
   }
 
@@ -48,7 +50,45 @@ class ActivityModal extends Component {
   }
 
   render() {
-    const { fields: { participant, assessment, duration, notes }, handleSubmit } = this.props;
+    const {
+      fields: { participant, assessment, duration, notes },
+      handleSubmit,
+      activityType
+    } = this.props;
+
+    let title;
+    let participantLabel;
+    let durationLabel;
+
+    switch (activityType) {
+      case 'walk':
+        title = 'Add a walk';
+        participantLabel = 'Who did you walk?';
+        durationLabel = 'How long did you walk (minutes)?';
+        break;
+      case 'run':
+        title = 'Add a run';
+        participantLabel = 'Who did you take for a run?';
+        durationLabel = 'How long did you run (minutes)?';
+        break;
+      case 'park':
+        title = 'Add a visit to the park';
+        participantLabel = 'Who did you take with you?';
+        durationLabel = 'How long did you stay (minutes)?';
+        break;
+      case 'meal':
+        title = 'Add a meal';
+        participantLabel = 'Who did you feed?';
+        durationLabel = 'How long did they eat (minutes)?';
+        break;
+      case 'vet':
+        title = 'Add a vet visit';
+        participantLabel = 'Who did you take?';
+        durationLabel = 'How long did you stay (minutes)?';
+        break;
+      default:
+        break;
+    }
 
     return (
       <div className="activity-modal">
@@ -64,13 +104,13 @@ class ActivityModal extends Component {
               <img className="activity-icon" src="http://placehold.it/50x50" alt="activity icon"></img>
             </Col>
             <Col xs={10}>
-              <h2 id="modal-label" className="activity-label">Add a walk</h2>
+              <h3 id="modal-label" className="activity-label">{title}</h3>
             </Col>
             <Form horizontal onSubmit={handleSubmit(() => this.onPostActivity())}>
 
               <FormGroup>
                 <Col sm={12}>
-                  <h3>Who did you walk?</h3>
+                  <h4>{participantLabel}</h4>
                 </Col>
                 <Col sm={12}>
                   {this.renderDogRadios()}
@@ -82,7 +122,7 @@ class ActivityModal extends Component {
 
               <FormGroup>
                 <Col sm={12}>
-                  <h3>How did it go?</h3>
+                  <h4>How did it go?</h4>
                 </Col>
                 <Col sm={12}>
                   <Radio
@@ -117,7 +157,7 @@ class ActivityModal extends Component {
 
               <FormGroup>
                 <Col sm={12}>
-                  <h3>How long did you walk (minutes)?</h3>
+                  <h4>{durationLabel}</h4>
                 </Col>
                 <Col sm={12}>
                   <FormControl
@@ -133,7 +173,7 @@ class ActivityModal extends Component {
 
               <FormGroup>
                 <Col sm={12}>
-                  <h3>Any notes?</h3>
+                  <h4>Any notes?</h4>
                 </Col>
                 <Col sm={12}>
                   <FormControl type="notes" placeholder="Notes" {...notes} />
@@ -167,7 +207,9 @@ ActivityModal.propTypes = {
   resetForm: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired,
   showModal: PropTypes.bool.isRequired,
-  dogs: PropTypes.array.isRequired
+  dogs: PropTypes.array.isRequired,
+  values: PropTypes.object.isRequired,
+  activityType: PropTypes.string
 };
 
 function validate(values) {
@@ -195,7 +237,8 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    showModal: state.activities.showModal,
+    showModal: state.activities.modal.show,
+    activityType: state.activities.modal.type,
     dogs: state.activities.dogs
   };
 }

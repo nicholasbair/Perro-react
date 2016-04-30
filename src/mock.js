@@ -14,7 +14,7 @@ const INITIAL_STATE = {
     },
     {
       id: 4,
-      type: 'feed'
+      type: 'meal'
     },
     {
       id: 5,
@@ -197,7 +197,10 @@ const INITIAL_STATE = {
       notes: ''
     }
   ],
-  showModal: false
+  modal: {
+    show: false,
+    type: null
+  }
 };
 
 export default INITIAL_STATE;
