@@ -12,8 +12,9 @@ class App extends Component {
   pullActivityDuration(name) {
     let data = this.props.history;
     let durations = [];
+    let activities = ['walk', 'run', 'park'];
     data.forEach((item) => {
-      if (item.participant === name) {
+      if (item.participant === name && activities.includes(item.type)) {
         durations.push(item.duration);
       }
     });
