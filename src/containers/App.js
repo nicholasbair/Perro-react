@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchHistory, fetchDogs, openModal, closeModal } from '../actions/index';
+import { openModal, closeModal } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import TopNav from '../components/TopNav';
 import ActivityMenu from '../components/ActivityMenu';
@@ -9,19 +9,15 @@ import HistoryFeed from '../components/HistoryFeed';
 import ActivityModal from './ActivityModal';
 
 class App extends Component {
-  componentWillMount() {
-    this.props.fetchHistory();
-    this.props.fetchDogs();
-  }
-
-  pullActivityDuration() {
+  pullActivityDuration(name) {
     let data = this.props.history;
     let durations = [];
     data.forEach((item) => {
-      if (item.participant === 'Rocko') {
+      if (item.participant === name) {
         durations.push(item.duration);
       }
     });
+
 
     return durations;
   }
@@ -33,7 +29,7 @@ class App extends Component {
         name={dog.name}
         tagline={dog.tagline}
         img={dog.img}
-        durations={this.pullActivityDuration()}
+        durations={this.pullActivityDuration(dog.name)}
       />
     );
   }
@@ -87,8 +83,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fetchHistory: PropTypes.func.isRequired,
-  fetchDogs: PropTypes.func.isRequired,
   openModal: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
@@ -104,4 +98,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchHistory, fetchDogs, openModal, closeModal })(App);
+export default connect(mapStateToProps, { openModal, closeModal })(App);

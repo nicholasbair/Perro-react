@@ -52,7 +52,7 @@ const INITIAL_STATE = {
     {
       id: 2,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 15,
       notes: ''
@@ -60,7 +60,7 @@ const INITIAL_STATE = {
     {
       id: 3,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 10,
       notes: ''
@@ -68,7 +68,7 @@ const INITIAL_STATE = {
     {
       id: 4,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 30,
       notes: ''
@@ -76,7 +76,7 @@ const INITIAL_STATE = {
     {
       id: 5,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 25,
       notes: ''
@@ -84,7 +84,7 @@ const INITIAL_STATE = {
     {
       id: 6,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 60,
       notes: ''
@@ -92,7 +92,7 @@ const INITIAL_STATE = {
     {
       id: 7,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 45,
       notes: ''
@@ -100,7 +100,7 @@ const INITIAL_STATE = {
     {
       id: 8,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 20,
       notes: ''
@@ -108,7 +108,7 @@ const INITIAL_STATE = {
     {
       id: 9,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
       assessment: 'good',
       duration: 25,
       notes: ''
@@ -116,7 +116,87 @@ const INITIAL_STATE = {
     {
       id: 10,
       type: 'walk',
-      participants: ['Nick', 'Rocko'],
+      participant: 'Rocko',
+      assessment: 'good',
+      duration: 30,
+      notes: ''
+    },
+    {
+      id: 11,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 30,
+      notes: ''
+    },
+    {
+      id: 12,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 35,
+      notes: ''
+    },
+    {
+      id: 13,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 20,
+      notes: ''
+    },
+    {
+      id: 14,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 25,
+      notes: ''
+    },
+    {
+      id: 15,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 45,
+      notes: ''
+    },
+    {
+      id: 16,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 35,
+      notes: ''
+    },
+    {
+      id: 17,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 40,
+      notes: ''
+    },
+    {
+      id: 18,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 50,
+      notes: ''
+    },
+    {
+      id: 19,
+      type: 'walk',
+      participant: 'Sasha',
+      assessment: 'good',
+      duration: 40,
+      notes: ''
+    },
+    {
+      id: 20,
+      type: 'walk',
+      participant: 'Sasha',
       assessment: 'good',
       duration: 30,
       notes: ''
