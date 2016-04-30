@@ -176,6 +176,12 @@ body {
   margin-top: 10px !important;
 }
 
+.modal-activity-letter {
+  text-align: center;
+  font-size: 30px;
+  padding: 0px;
+}
+
 /* Modal Buttons */
 .buttonStyles:nth-child(2) {
   border-top-left-radius: 4px;

@@ -58,6 +58,8 @@ class ActivityModal extends Component {
       activityType
     } = this.props;
 
+    console.log(activityType);
+
     let title;
     let participantLabel;
     let durationLabel;
@@ -102,10 +104,8 @@ class ActivityModal extends Component {
           onHide={this.close}
         >
           <div style={styles.dialogStyle}>
-            <Col xs={2} style={styles.noPad}>
-              <img className="activity-icon" src="http://placehold.it/50x50" alt="activity icon"></img>
-            </Col>
-            <Col xs={10}>
+            <Col xs={1} className="modal-activity-letter">+</Col>
+            <Col xs={11}>
               <h3 id="modal-label" className="activity-label">{title}</h3>
             </Col>
             <Form horizontal onSubmit={handleSubmit(() => this.onPostActivity())}>
