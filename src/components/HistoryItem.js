@@ -33,7 +33,7 @@ export default class HistoryItem extends Component {
 
     return (
       <div className="history-item" onClick={() => this.props.openModal()}>
-        <img className="user-avatar" src="http://placehold.it/50x50" alt="user avatar"></img>
+        <img className="user-avatar" src="./public/img/user.jpg" alt="user avatar"></img>
         {desc}
       </div>
     );
