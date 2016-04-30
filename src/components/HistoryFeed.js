@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
+import HistoryItem from './HistoryItem';
 
 export default class HistoryFeed extends Component {
   constructor(props) {
@@ -20,10 +21,13 @@ export default class HistoryFeed extends Component {
 
   renderHistoryItems() {
     return this.props.history.map((item) =>
-      <div className="history-item" key={item.id} onClick={() => this.props.openModal()}>
-        <img className="user-avatar" src="http://placehold.it/50x50" alt="user avatar"></img>
-        Nick {item.type}ed {item.participant} for {item.duration} minutes.
-      </div>
+      <HistoryItem
+        key={item.id}
+        activityType={item.type}
+        dog={item.participant}
+        duration={item.duration}
+        openModal={this.props.openModal}
+      />
     );
   }
 

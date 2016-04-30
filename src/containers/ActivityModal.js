@@ -19,6 +19,8 @@ class ActivityModal extends Component {
     let data = this.props.values;
     data.id = uuid();
     data.type = this.props.activityType;
+    data.duration = parseInt(data.duration, 10);
+
     if (data.notes === undefined) {
       data.notes = '';
     }

@@ -1,20 +1,38 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class HistoryItem extends Component {
-  onUserClick() {
-    this.props.handleClick();
-  }
-
   render() {
-    const type = this.props.type;
-    const participant = this.props.participants[0];
-    const dog = this.props.participants[1];
+    let desc;
+    const dog = this.props.dog;
     const duration = this.props.duration;
 
-    const desc = `${participant} ${type}ed ${dog} for ${duration} minutes.`;
+    switch (this.props.activityType) {
+      case 'walk':
+        desc = `Nick walked ${dog} for ${duration} minutes.`;
+        break;
+
+      case 'run':
+        desc = `Nick ran with ${dog} for ${duration} minutes.`;
+        break;
+
+      case 'park':
+        desc = `Nick took ${dog} to the park for ${duration} minutes.`;
+        break;
+
+      case 'meal':
+        desc = `Nick fed ${dog}.`;
+        break;
+
+      case 'vet':
+        desc = `Nick took ${dog} to the vet.`;
+        break;
+
+      default:
+        break;
+    }
 
     return (
-      <div className="history-item" onClick={() => this.onUserClick()}>
+      <div className="history-item" onClick={() => this.props.openModal()}>
         <img className="user-avatar" src="http://placehold.it/50x50" alt="user avatar"></img>
         {desc}
       </div>
@@ -23,8 +41,8 @@ export default class HistoryItem extends Component {
 }
 
 HistoryItem.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
-  participants: PropTypes.array.isRequired,
+  openModal: PropTypes.func.isRequired,
+  activityType: PropTypes.string.isRequired,
+  dog: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired
 };
