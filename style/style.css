@@ -181,3 +181,12 @@ body {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
+
+/* Form validation error */
+.text-help {
+  background-color: rgba(170, 57, 57, 0.7);
+  color: #f5f6f6;
+  margin-top: 3px;
+  border-radius: 4px;
+  padding-left: 10px;
+}

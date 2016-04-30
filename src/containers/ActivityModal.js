@@ -14,8 +14,14 @@ import {
 } from 'react-bootstrap';
 
 class ActivityModal extends Component {
+  onPostActivity() {
+    this.props.postActivity();
+    this.props.resetForm();
+  }
+
   cancelModal() {
     this.props.closeModal();
+    this.props.resetForm();
   }
 
   renderDogRadios() {
@@ -25,9 +31,9 @@ class ActivityModal extends Component {
       <Radio
         inline
         key={dog.id}
-        value={dog.id}
-        checked={participant.value === dog.id}
         {...participant}
+        value={dog.name}
+        checked={participant.value === dog.name}
       >
         {dog.name}
       </Radio>
@@ -35,7 +41,7 @@ class ActivityModal extends Component {
   }
 
   render() {
-    const { fields: { assessment, duration, notes }, handleSubmit } = this.props;
+    const { fields: { participant, assessment, duration, notes }, handleSubmit } = this.props;
 
     return (
       <div className="activity-modal">
@@ -53,38 +59,68 @@ class ActivityModal extends Component {
             <Col xs={10}>
               <h2 id="modal-label" className="activity-label">Add a walk</h2>
             </Col>
-            <Form horizontal onSubmit={handleSubmit(this.props.postActivity)}>
+            <Form horizontal onSubmit={handleSubmit(() => this.onPostActivity())}>
 
               <FormGroup>
-                <h3>Who did you walk?</h3>
-                {this.renderDogRadios()}
+                <Col sm={12}>
+                  <h3>Who did you walk?</h3>
+                </Col>
+                <Col sm={12}>
+                  {this.renderDogRadios()}
+                </Col>
+                <Col sm={12}>
+                  <div className="text-help">{participant.touched ? participant.error : ''}</div>
+                </Col>
               </FormGroup>
 
               <FormGroup>
-                <h3>How did it go?</h3>
-                <Radio inline checked={assessment.value === 'Ok'} {...assessment}>
-                  Ok
-                </Radio>
-                {' '}
-                <Radio inline checked={assessment.value === 'Good'} {...assessment}>
-                  Good
-                </Radio>
-                {' '}
-                <Radio inline checked={assessment.value === 'Great'} {...assessment}>
-                  Great
-                </Radio>
+                <Col sm={12}>
+                  <h3>How did it go?</h3>
+                </Col>
+                <Col sm={12}>
+                  <Radio
+                    inline
+                    {...assessment}
+                    value="Ok"
+                    checked={assessment.value === 'Ok'}
+                  >
+                    Ok
+                  </Radio>
+                  <Radio
+                    inline
+                    {...assessment}
+                    value="Good"
+                    checked={assessment.value === 'Good'}
+                  >
+                    Good
+                  </Radio>
+                  <Radio
+                    inline
+                    {...assessment}
+                    value="Great"
+                    checked={assessment.value === 'Great'}
+                  >
+                    Great
+                  </Radio>
+                </Col>
+                <Col sm={12}>
+                  <div className="text-help">{assessment.touched ? assessment.error : ''}</div>
+                </Col>
               </FormGroup>
 
-              <FormGroup controlId="formHorizontalNotes">
+              <FormGroup>
                 <Col sm={12}>
                   <h3>How long did you walk (minutes)?</h3>
                 </Col>
                 <Col sm={12}>
                   <FormControl type="duration" placeholder="Length" {...duration} />
                 </Col>
+                <Col sm={12}>
+                  <div className="text-help">{duration.touched ? duration.error : ''}</div>
+                </Col>
               </FormGroup>
 
-              <FormGroup controlId="formHorizontalNotes">
+              <FormGroup>
                 <Col sm={12}>
                   <h3>Any notes?</h3>
                 </Col>
@@ -117,21 +153,34 @@ ActivityModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   postActivity: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired,
   showModal: PropTypes.bool.isRequired,
   dogs: PropTypes.array.isRequired
 };
 
-// TODO: add form validation
-// function validate(values) {
-//   const errors = {};
-//
-//   if (!values.participants) {
-//     errors.participants = 'Select a participant';
-//   }
-//
-//   return errors;
-// }
+function validate(values) {
+  const rx = new RegExp(/^\s*\d+\s*$/);
+  const errors = {};
+
+  if (!values.participant) {
+    errors.participant = 'Select a dog';
+  }
+
+  if (!values.assessment) {
+    errors.assessment = 'Select one';
+  }
+
+  if (!values.duration) {
+    errors.duration = 'Enter a length';
+  }
+
+  if (values.duration && !rx.test(values.duration)) {
+    errors.duration = 'Enter a number whole number';
+  }
+
+  return errors;
+}
 
 function mapStateToProps(state) {
   return {
@@ -142,5 +191,6 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'ModalForm',
-  fields: ['participant', 'assessment', 'duration', 'notes']
+  fields: ['participant', 'assessment', 'duration', 'notes'],
+  validate
 }, mapStateToProps, { postActivity })(ActivityModal);

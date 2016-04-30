@@ -223,7 +223,7 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state };
       break;
     case POST_ACTIVITY:
-      return { ...state };
+      return { ...state, showModal: false };
       break;
     default:
       return state;
