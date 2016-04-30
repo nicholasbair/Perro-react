@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-import { closeActivityModal, fetchDogs } from '../actions/index';
+import { closeActivityModal, fetchDogs, postActivity } from '../actions/index';
 import styles from '../../style/styles';
-// import { reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import {
   Modal,
   Form,
@@ -11,6 +9,7 @@ import {
   Button,
   ButtonGroup,
   Col,
+  Radio,
   FormControl
 } from 'react-bootstrap';
 
@@ -20,31 +19,27 @@ class ActivityModal extends Component {
   }
 
   cancelModal() {
-    this.props.closeActivityModal();
+    this.props.closeModal();
   }
 
-  renderDogButtons() {
-    let width = 100 / this.props.dogs.length;
-    let dogButtonStyle = {
-      backgroundColor: 'rgba(57, 129, 203, 0.7)',
-      border: '1px solid rgba(57, 129, 203, 0.7)',
-      color: '#f5f6f6',
-      width: `${width}%`
-    };
+  renderDogRadios() {
+    const { fields: { participants } } = this.props;
 
     return this.props.dogs.map((dog) =>
-      <Button key={dog.id} style={dogButtonStyle}>{dog.name}</Button>
+      <Radio
+        inline
+        key={dog.id}
+        value={dog.id}
+        checked={participants.value === dog.id}
+        {...participants}
+      >
+        {dog.name}
+      </Radio>
     );
   }
 
   render() {
-    // const { fields: { participants, assessment, duration, notes }, handleSubmit } = this.props;
-    let buttonJustifiedStyle = {
-      backgroundColor: 'rgba(57, 129, 203, 0.7)',
-      border: '1px solid rgba(57, 129, 203, 0.7)',
-      color: '#f5f6f6',
-      width: '33%'
-    };
+    const { fields: { assessment, duration, notes }, handleSubmit } = this.props;
 
     return (
       <div className="activity-modal">
@@ -52,7 +47,7 @@ class ActivityModal extends Component {
           aria-labelledby="modal-label"
           style={styles.modalStyle}
           backdropStyle={styles.backdropStyle}
-          show={this.props.showActivityModal}
+          show={this.props.showModal}
           onHide={this.close}
         >
           <div style={styles.dialogStyle}>
@@ -62,27 +57,34 @@ class ActivityModal extends Component {
             <Col xs={10}>
               <h2 id="modal-label" className="activity-label">Add a walk</h2>
             </Col>
-            <Form horizontal>
-              {/*onSubmit={handleSubmit(this.props.postActivity)}*/}
+            <Form horizontal onSubmit={handleSubmit(this.props.postActivity)}>
 
-              <ButtonGroup justified className="buttonStyles">
+              <FormGroup>
                 <h3>Who did you walk?</h3>
-                {this.renderDogButtons()}
-              </ButtonGroup>
+                {this.renderDogRadios()}
+              </FormGroup>
 
-              <ButtonGroup justified>
+              <FormGroup>
                 <h3>How did it go?</h3>
-                <Button style={buttonJustifiedStyle}>Ok</Button>
-                <Button style={buttonJustifiedStyle}>Good</Button>
-                <Button style={buttonJustifiedStyle}>Great</Button>
-              </ButtonGroup>
+                <Radio inline checked={assessment.value === 'Ok'} {...assessment}>
+                  Ok
+                </Radio>
+                {' '}
+                <Radio inline checked={assessment.value === 'Good'} {...assessment}>
+                  Good
+                </Radio>
+                {' '}
+                <Radio inline checked={assessment.value === 'Great'} {...assessment}>
+                  Great
+                </Radio>
+              </FormGroup>
 
               <FormGroup controlId="formHorizontalNotes">
                 <Col sm={12}>
                   <h3>How long did you walk (minutes)?</h3>
                 </Col>
                 <Col sm={12}>
-                  <FormControl type="length" placeholder="Length" />
+                  <FormControl type="duration" placeholder="Length" {...duration} />
                 </Col>
               </FormGroup>
 
@@ -91,15 +93,12 @@ class ActivityModal extends Component {
                   <h3>Any notes?</h3>
                 </Col>
                 <Col sm={12}>
-                  <FormControl type="notes" placeholder="Notes" />
+                  <FormControl type="notes" placeholder="Notes" {...notes} />
                 </Col>
               </FormGroup>
 
               <ButtonGroup vertical block>
-                <Button
-                  style={styles.baseButtonStyle}
-                  onClick={() => this.postActivity()}
-                >
+                <Button type="submit" style={styles.baseButtonStyle}>
                   Add my activity!
                 </Button>
                 <Button
@@ -119,9 +118,12 @@ class ActivityModal extends Component {
 }
 
 ActivityModal.propTypes = {
-  closeActivityModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   fetchDogs: PropTypes.func.isRequired,
-  showActivityModal: PropTypes.bool.isRequired,
+  postActivity: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  fields: PropTypes.object.isRequired,
+  showModal: PropTypes.bool.isRequired,
   dogs: PropTypes.array.isRequired
 };
 
@@ -136,26 +138,14 @@ ActivityModal.propTypes = {
 //   return errors;
 // }
 
-// TODO: enable reduxForm
-// export default reduxForm({
-//   form: 'ActivityModalForm',
-//   fields: ['participants', 'assessment', 'duration', 'notes']
-// }, null, { postActivity })(ActivityModal);
-
 function mapStateToProps(state) {
   return {
-    showActivityModal: state.activities.showActivityModal,
+    showModal: state.activities.showModal,
     dogs: state.activities.dogs
   };
 }
 
-export default connect(mapStateToProps, {
-  closeActivityModal,
-  fetchDogs
-})(ActivityModal);
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ postActivity }, dispatch);
-// }
-//
-// export default connect(null, mapDispatchToProps)(ActivityModal);
+export default reduxForm({
+  form: 'ModalForm',
+  fields: ['participants', 'assessment', 'duration', 'notes']
+}, mapStateToProps, { postActivity, closeActivityModal, fetchDogs })(ActivityModal);

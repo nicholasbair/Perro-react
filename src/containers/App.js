@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchHistory, fetchDogs } from '../actions/index';
+import { fetchHistory, fetchDogs, openModal, closeModal } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import TopNav from '../components/TopNav';
-import ActivityMenu from './ActivityMenu';
+import ActivityMenu from '../components/ActivityMenu';
 import DogCard from '../components/DogCard';
-import HistoryFeed from './HistoryFeed';
+import HistoryFeed from '../components/HistoryFeed';
 import ActivityModal from './ActivityModal';
-import HistoryModal from './HistoryModal';
 
 class App extends Component {
   componentWillMount() {
@@ -60,7 +59,10 @@ class App extends Component {
         <Grid fluid style={styles.fullHeight}>
           <Row style={styles.fullHeight}>
             <Col xs={1} style={styles.activityMenu}>
-              <ActivityMenu />
+              <ActivityMenu
+                activities={this.props.activities}
+                openModal={this.props.openModal}
+              />
             </Col>
             <Col xs={8} style={styles.fullHeight}>
               <Row>
@@ -68,12 +70,14 @@ class App extends Component {
               </Row>
             </Col>
             <Col xs={3} style={styles.historyFeed}>
-              <HistoryFeed />
+              <HistoryFeed
+                history={this.props.history}
+                openModal={this.props.openModal}
+              />
             </Col>
           </Row>
         </Grid>
-        <ActivityModal />
-        <HistoryModal />
+        <ActivityModal closeModal={this.props.closeModal} />
       </div>
     );
   }
@@ -82,15 +86,19 @@ class App extends Component {
 App.propTypes = {
   fetchHistory: PropTypes.func.isRequired,
   fetchDogs: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
+  activities: PropTypes.array.isRequired,
   dogs: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    history: state.history.all,
+    history: state.activities.history,
+    activities: state.activities.activityTypes,
     dogs: state.activities.dogs
   };
 }
 
-export default connect(mapStateToProps, { fetchHistory, fetchDogs })(App);
+export default connect(mapStateToProps, { fetchHistory, fetchDogs, openModal, closeModal })(App);

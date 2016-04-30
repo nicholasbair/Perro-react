@@ -3,7 +3,8 @@ import { Row, Col } from 'react-bootstrap';
 import {
   Sparklines,
   SparklinesLine,
-  SparklinesReferenceLine } from 'react-sparklines';
+  SparklinesReferenceLine
+} from 'react-sparklines';
 
 export default class DogCard extends Component {
   render() {

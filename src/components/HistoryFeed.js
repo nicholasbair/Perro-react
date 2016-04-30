@@ -1,20 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { fetchHistory, openHistoryModal } from '../actions/index';
-import HistoryItem from '../components/HistoryItem';
 import cx from 'classnames';
 
-class HistoryFeed extends Component {
+export default class HistoryFeed extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isHidden: false
     };
-  }
-
-  componentWillMount() {
-    this.props.fetchHistory();
   }
 
   hideFeed() {
@@ -25,19 +18,19 @@ class HistoryFeed extends Component {
     this.setState({ isHidden: false });
   }
 
-  handleClick() {
-    this.props.openHistoryModal();
-  }
-
   renderHistoryItems() {
     return this.props.history.map((item) =>
-      <HistoryItem
-        key={item.id}
-        type={item.type}
-        participants={item.participants}
-        duration={item.duration}
-        handleClick={() => this.handleClick()}
-      />
+      // let activityType = this.props.type;
+      // const participant = this.props.participants[0];
+      // const dog = this.props.participants[1];
+      // const duration = this.props.duration;
+
+      // const desc = `${participant} ${type}ed ${dog} for ${duration} minutes.`;
+
+      <div className="history-item" onClick={() => this.props.openModal()}>
+        <img className="user-avatar" src="http://placehold.it/50x50" alt="user avatar"></img>
+        {item.participant} {item.type} {item.particants} for {item.duration}.
+      </div>
     );
   }
 
@@ -93,13 +86,6 @@ class HistoryFeed extends Component {
 }
 
 HistoryFeed.propTypes = {
-  fetchHistory: PropTypes.func.isRequired,
-  openHistoryModal: PropTypes.func.isRequired,
-  history: PropTypes.array.isRequired
+  history: PropTypes.array.isRequired,
+  openModal: PropTypes.func.isRequired
 };
-
-function mapStateToProps(state) {
-  return { history: state.history.all };
-}
-
-export default connect(mapStateToProps, { openHistoryModal, fetchHistory })(HistoryFeed);
