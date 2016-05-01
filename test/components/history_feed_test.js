@@ -5,7 +5,27 @@ describe('HistoryFeed', () => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(HistoryFeed);
+    const props = {
+      history: [
+        {
+          id: 1,
+          type: 'walk',
+          participant: 'Rocko',
+          assessment: 'good',
+          duration: 20,
+          notes: ''
+        },
+        {
+          id: 2,
+          type: 'walk',
+          participant: 'Rocko',
+          assessment: 'good',
+          duration: 15,
+          notes: ''
+        }
+      ]
+    };
+    component = renderComponent(HistoryFeed, null, props);
   });
 
   it('renders something', () => {

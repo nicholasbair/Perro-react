@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import CardSlideout from '../../scr/components/CardSlideout';
+import CardSlideout from '../../src/components/CardSlideout';
 
 describe('CardSlideout', () => {
   let component;

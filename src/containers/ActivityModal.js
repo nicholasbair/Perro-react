@@ -58,8 +58,6 @@ class ActivityModal extends Component {
       activityType
     } = this.props;
 
-    console.log(activityType);
-
     let title;
     let participantLabel;
     let durationLabel;

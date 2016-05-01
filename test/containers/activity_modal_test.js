@@ -5,7 +5,23 @@ describe('ActivityModal', () => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(ActivityModal);
+    const props = { dogs: [
+      {
+        id: 1,
+        name: 'Rocko',
+        tagline: 'Badass Rescue',
+        img: 'rocko.jpeg'
+      },
+      {
+        id: 2,
+        name: 'Sasha',
+        tagline: 'Very Viszla',
+        img: 'sasha.png'
+      }
+    ],
+    activityType: 'walk'
+  };
+    component = renderComponent(ActivityModal, null, props);
   });
 
   it('renders something', () => {

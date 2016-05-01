@@ -19,6 +19,10 @@ class App extends Component {
       }
     });
 
+    if (durations.length > 30) {
+      return durations.slice(durations.length - 30, durations.length);
+    }
+
     return durations;
   }
 
