@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import ActivityMenu from '../../src/containers/ActivityMenu';
+import ActivityMenu from '../../src/components/ActivityMenu';
 
 describe('ActivityMenu', () => {
   let component;
@@ -14,5 +14,13 @@ describe('ActivityMenu', () => {
 
   it('shows a activity item', () => {
     expect(component.find('.activity-item')).to.exist;
+  });
+
+  it('shows an icon', () => {
+    expect(component.find('.activity-letter')).to.exist;
+  });
+
+  it('shows an icon', () => {
+    expect(component.find('.activity-word')).to.exist;
   });
 });

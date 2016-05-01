@@ -163,6 +163,7 @@ class ActivityModal extends Component {
                 </Col>
                 <Col sm={12}>
                   <FormControl
+                    className="modal-input-length"
                     type="duration"
                     placeholder="Length"
                     {...duration}

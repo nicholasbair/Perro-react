@@ -32,7 +32,7 @@ export default class HistoryItem extends Component {
     }
 
     return (
-      <div className="history-item" onClick={() => this.props.openModalHistory(this.props.key)}>
+      <div className="history-item" onClick={() => this.props.openModalHistory(this.props.activityId)}>
         <img className="user-avatar" src="./public/img/user.jpg" alt="user avatar"></img>
         {desc}
       </div>
@@ -45,5 +45,5 @@ HistoryItem.propTypes = {
   activityType: PropTypes.string.isRequired,
   dog: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
-  key: PropTypes.number.isRequired
+  activityId: PropTypes.number.isRequired
 };

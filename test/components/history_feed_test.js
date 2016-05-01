@@ -12,6 +12,10 @@ describe('HistoryFeed', () => {
     expect(component).to.exist;
   });
 
+  it('renders history feed parent', () => {
+    expect(component.find('.history-feed-parent')).to.exist;
+  });
+
   it('shows a history item', () => {
     expect(component.find('.history-item')).to.exist;
   });

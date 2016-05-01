@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import App from '../../src/components/App';
+import App from '../../src/containers/App';
 
 describe('App', () => {
   let component;
@@ -26,5 +26,9 @@ describe('App', () => {
 
   it('shows a dog card', () => {
     expect(component.find('.dog-card')).to.exist;
+  });
+
+  it('renders activity modal', () => {
+    expect(component.find('.activity-modal')).to.exist;
   });
 });
