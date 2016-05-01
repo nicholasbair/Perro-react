@@ -2,8 +2,10 @@ import {
   FETCH_ACTIVITIES,
   FETCH_DOGS,
   OPEN_MODAL,
+  OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
   FETCH_HISTORY,
+  FETCH_HISTORY_ITEM,
   POST_ACTIVITY
 } from '../actions/index';
 
@@ -16,6 +18,13 @@ export default function(state = INITIAL_STATE, action) {
         modal: {
           show: true,
           type: action.payload
+        }
+      });
+      break;
+    case OPEN_MODAL_HISTORY:
+      return Object.assign({}, state, {
+        modal: {
+          show: true
         }
       });
       break;

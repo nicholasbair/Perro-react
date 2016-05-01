@@ -26,7 +26,7 @@ export default class HistoryFeed extends Component {
         activityType={item.type}
         dog={item.participant}
         duration={item.duration}
-        openModal={this.props.openModal}
+        openModalHistory={this.props.openModalHistory}
       />
     );
   }
@@ -84,5 +84,5 @@ export default class HistoryFeed extends Component {
 
 HistoryFeed.propTypes = {
   history: PropTypes.array.isRequired,
-  openModal: PropTypes.func.isRequired
+  openModalHistory: PropTypes.func.isRequired
 };

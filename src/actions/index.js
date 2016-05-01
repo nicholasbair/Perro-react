@@ -1,7 +1,9 @@
 export const OPEN_MODAL = 'OPEN_MODAL';
+export const OPEN_MODAL_HISTORY = 'OPEN_MODAL_HISTORY';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 export const FETCH_HISTORY = 'FETCH_HISTORY';
+export const FETCH_HISTORY_ITEM = 'FETCH_HISTORY_ITEM';
 export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
 export const FETCH_DOGS = 'FETCH_DOGS';
 
@@ -9,6 +11,13 @@ export function openModal(activityType) {
   return {
     type: OPEN_MODAL,
     payload: activityType
+  };
+}
+
+export function openModalHistory(activityId) {
+  return {
+    type: OPEN_MODAL_HISTORY,
+    payload: activityId
   };
 }
 

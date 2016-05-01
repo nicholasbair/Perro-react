@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { openModal, closeModal } from '../actions/index';
+import { openModal, openModalHistory, closeModal } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import TopNav from '../components/TopNav';
 import ActivityMenu from '../components/ActivityMenu';
@@ -68,7 +68,7 @@ class App extends Component {
             <Col xs={3} style={styles.historyFeed}>
               <HistoryFeed
                 history={this.props.history}
-                openModal={this.props.openModal}
+                openModalHistory={this.props.openModalHistory}
               />
             </Col>
           </Row>
@@ -84,6 +84,7 @@ class App extends Component {
 
 App.propTypes = {
   openModal: PropTypes.func.isRequired,
+  openModalHistory: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
   activities: PropTypes.array.isRequired,
@@ -98,4 +99,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { openModal, closeModal })(App);
+export default connect(mapStateToProps, { openModal, openModalHistory, closeModal })(App);
