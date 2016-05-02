@@ -4,12 +4,13 @@ import { Route, IndexRoute } from 'react-router';
 import Main from './components/Main';
 import Home from './components/Home';
 import App from './containers/App';
-import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
+import RequireAuth from './components/RequireAuth';
 
 export default (
   <Route path="/" component={Main}>
     <IndexRoute component={Home} />
-    <Route path="/app" component={App} />
-    <Route path="/signup" component={SignUp} />
+    <Route path="/app" component={RequireAuth(App)} />
+    <Route path="/signin" component={SignIn} />
   </Route>
 );

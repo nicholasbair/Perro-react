@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-// import TopNav from './TopNav';
+import TopNav from './TopNav';
 
 export default class Main extends Component {
   render() {
     return (
       <div>
-        {/*<TopNav />*/}
+        <TopNav />
         {this.props.children}
       </div>
     );

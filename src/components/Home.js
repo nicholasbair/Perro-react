@@ -6,9 +6,6 @@ export default class Home extends Component {
     return (
       <div>
         <h2>Home Page</h2>
-        <Link to="/app">App</Link>
-        <br />
-        <Link to="/signup">Sign Up</Link>
       </div>
     );
   }
