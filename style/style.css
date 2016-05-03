@@ -11,6 +11,10 @@ body {
   margin-bottom: 30px;
 }
 
+.navbar-default .navbar-nav>li>a {
+  color: #f5f6f6;
+}
+
 /* GoogleMaps background */
 #map {
   height: 100%;

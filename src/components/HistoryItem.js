@@ -20,7 +20,7 @@ export default class HistoryItem extends Component {
         break;
 
       case 'meal':
-        desc = `Nick fed ${dog} ${value} of food.`;
+        desc = `Nick fed ${dog} ${value} cups of food.`;
         break;
 
       case 'vet':
