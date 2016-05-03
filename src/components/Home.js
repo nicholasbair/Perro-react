@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Jumbotron, Button } from 'react-bootstrap';
 
 export default class Home extends Component {
   render() {
     return (
-      <div>
-        <h2>Home Page</h2>
+      <div className="home-jumbotron-container">
+        <Jumbotron className="home-jumbotron">
+          <h1 className="home-jumbotron-headline">Welcome to Perro-React</h1>
+          <p>A React/Redux web app, a project-based adventure to challenge myself, and sharpen my JavaScript skills.</p>
+          <Button className="jumbotron-button" href="/signin">Sign Up</Button>
+        </Jumbotron>
       </div>
     );
   }
