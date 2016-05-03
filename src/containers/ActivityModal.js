@@ -3,6 +3,7 @@ import { postActivity } from '../actions/index';
 import styles from '../../style/styles';
 import { reduxForm } from 'redux-form';
 import uuid from 'uuid-v4';
+import cx from 'classnames';
 import {
   Modal,
   Form,
@@ -19,7 +20,7 @@ class ActivityModal extends Component {
     let data = this.props.values;
     data.id = uuid();
     data.type = this.props.activityType;
-    data.duration = parseInt(data.duration, 10);
+    data.value = parseInt(data.value, 10);
 
     if (data.notes === undefined) {
       data.notes = '';
@@ -53,40 +54,46 @@ class ActivityModal extends Component {
 
   render() {
     const {
-      fields: { participant, assessment, duration, notes },
+      fields: { participant, assessment, value, notes },
       handleSubmit,
       activityType
     } = this.props;
 
     let title;
     let participantLabel;
-    let durationLabel;
+    let valueLabel;
+    let valuePlaceholder;
 
     switch (activityType) {
       case 'walk':
         title = 'Add a walk';
         participantLabel = 'Who did you walk?';
-        durationLabel = 'How long did you walk (minutes)?';
+        valueLabel = 'How long did you walk (minutes)?';
+        valuePlaceholder = 'Length';
         break;
       case 'run':
         title = 'Add a run';
         participantLabel = 'Who did you take for a run?';
-        durationLabel = 'How long did you run (minutes)?';
+        valueLabel = 'How long did you run (minutes)?';
+        valuePlaceholder = 'Length';
         break;
       case 'park':
         title = 'Add a visit to the park';
         participantLabel = 'Who did you take with you?';
-        durationLabel = 'How long did you stay (minutes)?';
+        valueLabel = 'How long did you stay (minutes)?';
+        valuePlaceholder = 'Length';
         break;
       case 'meal':
         title = 'Add a meal';
         participantLabel = 'Who did you feed?';
-        durationLabel = 'How long did they eat (minutes)?';
+        valueLabel = 'How many cups of food?';
+        valuePlaceholder = 'Cups';
         break;
       case 'vet':
         title = 'Add a vet visit';
         participantLabel = 'Who did you take?';
-        durationLabel = 'How long did you stay (minutes)?';
+        valueLabel = 'How much did it cost?';
+        valuePlaceholder = '$$$';
         break;
       default:
         break;
@@ -157,18 +164,18 @@ class ActivityModal extends Component {
 
               <FormGroup>
                 <Col sm={12}>
-                  <h4>{durationLabel}</h4>
+                  <h4>{valueLabel}</h4>
                 </Col>
                 <Col sm={12}>
                   <FormControl
                     className="modal-input-length"
-                    type="duration"
-                    placeholder="Length"
-                    {...duration}
+                    type="value"
+                    placeholder={valuePlaceholder}
+                    {...value}
                   />
                 </Col>
                 <Col sm={12}>
-                  <div className="text-help">{duration.touched ? duration.error : ''}</div>
+                  <div className="text-help">{value.touched ? value.error : ''}</div>
                 </Col>
               </FormGroup>
 
@@ -225,12 +232,12 @@ function validate(values) {
     errors.assessment = 'Select one';
   }
 
-  if (!values.duration) {
-    errors.duration = 'Enter a length';
+  if (!values.value) {
+    errors.value = 'Enter a length';
   }
 
-  if (values.duration && !rx.test(values.duration)) {
-    errors.duration = 'Enter a number whole number';
+  if (values.value && !rx.test(values.value)) {
+    errors.value = 'Enter a number whole number';
   }
 
   return errors;
@@ -246,6 +253,6 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'ModalForm',
-  fields: ['participant', 'assessment', 'duration', 'notes'],
+  fields: ['participant', 'assessment', 'value', 'notes'],
   validate
 }, mapStateToProps, { postActivity })(ActivityModal);

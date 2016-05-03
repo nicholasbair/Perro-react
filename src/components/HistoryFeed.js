@@ -26,7 +26,7 @@ export default class HistoryFeed extends Component {
         activityId={item.id}
         activityType={item.type}
         dog={item.participant}
-        duration={item.duration}
+        value={item.value}
         openModalHistory={this.props.openModalHistory}
       />
     );

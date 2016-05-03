@@ -4,27 +4,27 @@ export default class HistoryItem extends Component {
   render() {
     let desc;
     const dog = this.props.dog;
-    const duration = this.props.duration;
+    const value = this.props.value;
 
     switch (this.props.activityType) {
       case 'walk':
-        desc = `Nick walked ${dog} for ${duration} minutes.`;
+        desc = `Nick walked ${dog} for ${value} minutes.`;
         break;
 
       case 'run':
-        desc = `Nick ran with ${dog} for ${duration} minutes.`;
+        desc = `Nick ran with ${dog} for ${value} minutes.`;
         break;
 
       case 'park':
-        desc = `Nick took ${dog} to the park for ${duration} minutes.`;
+        desc = `Nick took ${dog} to the park for ${value} minutes.`;
         break;
 
       case 'meal':
-        desc = `Nick fed ${dog}.`;
+        desc = `Nick fed ${dog} ${value} of food.`;
         break;
 
       case 'vet':
-        desc = `Nick took ${dog} to the vet.`;
+        desc = `Nick took ${dog} to the vet ($${value}).`;
         break;
 
       default:
@@ -44,6 +44,6 @@ HistoryItem.propTypes = {
   openModalHistory: PropTypes.func.isRequired,
   activityType: PropTypes.string.isRequired,
   dog: PropTypes.string.isRequired,
-  duration: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
   activityId: PropTypes.number.isRequired
 };

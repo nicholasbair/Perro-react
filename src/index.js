@@ -7,9 +7,10 @@ import routes from './routes';
 
 import Home from './components/Home';
 import reducers from './reducers';
-import promise from 'redux-promise';
+// import promise from 'redux-promise';
+import Async from './middlewares/async';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(Async)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

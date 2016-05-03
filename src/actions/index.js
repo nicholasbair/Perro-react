@@ -1,12 +1,14 @@
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const OPEN_MODAL_HISTORY = 'OPEN_MODAL_HISTORY';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
-export const POST_ACTIVITY = 'POST_ACTIVITY';
-export const FETCH_HISTORY = 'FETCH_HISTORY';
-export const FETCH_HISTORY_ITEM = 'FETCH_HISTORY_ITEM';
-export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
-export const FETCH_DOGS = 'FETCH_DOGS';
-export const CHANGE_AUTH = 'CHANGE_AUTH';
+import {
+  OPEN_MODAL,
+  OPEN_MODAL_HISTORY,
+  CLOSE_MODAL,
+  POST_ACTIVITY,
+  FETCH_HISTORY,
+  FETCH_HISTORY_ITEM,
+  FETCH_ACTIVITIES,
+  FETCH_DOGS,
+  CHANGE_AUTH
+} from './types';
 
 export function authenticate(isLoggedIn) {
   return {

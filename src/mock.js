@@ -41,7 +41,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 20,
+      value: 20,
       notes: ''
     },
     {
@@ -49,7 +49,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 15,
+      value: 15,
       notes: ''
     },
     {
@@ -57,7 +57,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 10,
+      value: 10,
       notes: ''
     },
     {
@@ -65,7 +65,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 30,
+      value: 30,
       notes: ''
     },
     {
@@ -73,7 +73,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 25,
+      value: 25,
       notes: ''
     },
     {
@@ -81,7 +81,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 60,
+      value: 60,
       notes: ''
     },
     {
@@ -89,7 +89,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 45,
+      value: 45,
       notes: ''
     },
     {
@@ -97,7 +97,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 20,
+      value: 20,
       notes: ''
     },
     {
@@ -105,7 +105,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 25,
+      value: 25,
       notes: ''
     },
     {
@@ -113,7 +113,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Rocko',
       assessment: 'good',
-      duration: 30,
+      value: 30,
       notes: ''
     },
     {
@@ -121,7 +121,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 30,
+      value: 30,
       notes: ''
     },
     {
@@ -129,7 +129,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 35,
+      value: 35,
       notes: ''
     },
     {
@@ -137,7 +137,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 20,
+      value: 20,
       notes: ''
     },
     {
@@ -145,7 +145,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 25,
+      value: 25,
       notes: ''
     },
     {
@@ -153,7 +153,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 45,
+      value: 45,
       notes: ''
     },
     {
@@ -161,7 +161,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 35,
+      value: 35,
       notes: ''
     },
     {
@@ -169,7 +169,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 40,
+      value: 40,
       notes: ''
     },
     {
@@ -177,7 +177,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 50,
+      value: 50,
       notes: ''
     },
     {
@@ -185,7 +185,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 40,
+      value: 40,
       notes: ''
     },
     {
@@ -193,7 +193,7 @@ const INITIAL_STATE = {
       type: 'walk',
       participant: 'Sasha',
       assessment: 'good',
-      duration: 30,
+      value: 30,
       notes: ''
     }
   ],

@@ -17,7 +17,6 @@ class TopNav extends Component {
   }
 
   render() {
-    console.log(this.props.authenticated);
     const textColor = {
       color: '#f5f6f6'
     };

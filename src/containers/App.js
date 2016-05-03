@@ -14,7 +14,7 @@ class App extends Component {
     let activities = ['walk', 'run', 'park'];
     data.forEach((item) => {
       if (item.participant === name && activities.includes(item.type)) {
-        durations.push(item.duration);
+        durations.push(item.value);
       }
     });
 

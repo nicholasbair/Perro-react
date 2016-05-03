@@ -7,7 +7,7 @@ import {
   FETCH_HISTORY,
   FETCH_HISTORY_ITEM,
   POST_ACTIVITY
-} from '../actions/index';
+} from '../actions/types';
 
 import INITIAL_STATE from '../mock';
 
