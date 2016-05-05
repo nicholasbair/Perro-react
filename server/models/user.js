@@ -4,21 +4,17 @@ const bcrypt = require('bcrypt-nodejs');
 
 // Define our model
 const userSchema = new Schema({
-  email: {
-    type:String,
-    unique: true,
-    lowercase: true
-  },
+  email: { type: String, unique: true, lowercase: true },
   password: String
 });
 
-// On save hook, encrypt password
-// Before saving the model, run this function
+// On Save Hook, encrypt password
+// Before saving a model, run this function
 userSchema.pre('save', function(next) {
-  // Get access to the user model
+  // get access to the user model
   const user = this;
 
-  // Generate a salt, then run callback
+  // generate a salt then run callback
   bcrypt.genSalt(10, function(err, salt) {
     if (err) { return next(err); }
 
@@ -41,7 +37,7 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
   });
 }
 
-// Create model class
+// Create the model class
 const ModelClass = mongoose.model('user', userSchema);
 
 // Export the model
