@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import ActivitiesReducer from './ActivitiesReducer';
-import AuthenticationReducer from './AuthenticationReducer';
+import AuthReducer from './AuthReducer';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
   activities: ActivitiesReducer,
   form: formReducer,
-  authenticated: AuthenticationReducer
+  auth: AuthReducer
 });
 
 export default rootReducer;

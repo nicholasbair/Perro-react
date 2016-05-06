@@ -1,19 +1,32 @@
-import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { authenticate } from '../actions/index';
+// import { authenticate } from '../actions/index';
 
 class TopNav extends Component {
-  renderSign() {
+  renderSignLinks() {
     if (this.props.authenticated) {
+      // Show a link to signout
       return (
-        <NavItem onClick={() => this.props.authenticate(false)}>
-          Sign Out
-        </NavItem>
+        <Nav pullRight>
+          <li className="nav-item">
+            <Link className="nav-link" to="/signout">Sign Out</Link>
+          </li>
+        </Nav>
       );
     }
-    return <NavItem href="/signin">Sign In</NavItem>;
+    // Show a link to signin
+    return (
+      <Nav pullRight>
+        <li className="nav-item" key={1}>
+          <Link className="nav-link" to="/signin">Sign In</Link>
+        </li>
+        <li className="nav-item" key={2}>
+          <Link className="nav-link" to="/signup">Sign up</Link>
+        </li>
+      </Nav>
+    );
   }
 
   render() {
@@ -25,19 +38,21 @@ class TopNav extends Component {
       <Navbar fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/" style={textColor}>Perro-React</a>
+            <Link to="/" style={textColor}>Perro-React</Link>
           </Navbar.Brand>
         </Navbar.Header>
-        <Nav pullRight>
-          {this.renderSign()}
-        </Nav>
+        {this.renderSignLinks()}
       </Navbar>
     );
   }
 }
 
+// Navbar.propTypes = {
+//   authenticated: PropTypes.bool.isRequired
+// };
+
 function mapStateToProps(state) {
-  return { authenticated: state.authenticated };
+  return { authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps, { authenticate })(TopNav);
+export default connect(mapStateToProps)(TopNav);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopNav from './TopNav';
 
-export default class Main extends Component {
+export default class App extends Component {
   render() {
     return (
       <div>

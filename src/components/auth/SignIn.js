@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router';
-// import { connect } from 'react-redux';
-// import { authenticate } from '../../actions/index';
+import React, { Component, PropTypes } from 'react';
+import { signinUser } from '../../actions/index';
 import styles from '../../../style/styles';
 import { reduxForm } from 'redux-form';
 import {
@@ -13,40 +11,28 @@ import {
   Button
 } from 'react-bootstrap';
 
-class SignIn extends Component {
-  // static contextTypes = {
-  //   router: React.PropTypes.object
-  // };
+class Signin extends Component {
+  handleFormSubmit() {
+    const { email, password } = this.props.values;
+    this.props.signinUser({ email, password });
+  }
 
-  // componentWillUpdate(nextProps) {
-  //   if (nextProps.authenticated) {
-  //     this.context.router.push('/app');
-  //   }
-  // }
-
-  // authButton() {
-  //   if (!this.props.authenticated) {
-  //     return (
-  //       <Button
-  //         style={styles.baseButtonStyle}
-  //         onClick={() => this.props.authenticate(true)}
-  //       >
-  //         Sign In
-  //       </Button>
-  //     );
-  //   }
-  // }
-
-  handleFormSubmit({ email, password }) {
-    console.log(email, password);
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
   }
 
   render() {
-    const { handleSubmit, fields: { email, password } } = this.props;
+    const { fields: { email, password }, handleSubmit } = this.props;
 
     return (
       <div className="signin-form-container">
-        <Form className="signin-form" onSubmit={() => this.handleFormSubmit()}>
+        <Form className="signin-form" onSubmit={handleSubmit(() => this.handleFormSubmit())}>
           <FormGroup>
             <Col sm={12}>
               <h2>Sign In</h2>
@@ -58,7 +44,7 @@ class SignIn extends Component {
               <h4>Email</h4>
             </Col>
             <Col sm={12}>
-              <FormControl {...email} className="" type="email" placeholder="Email" />
+              <FormControl {...email} type="email" placeholder="Email" />
             </Col>
           </FormGroup>
 
@@ -67,12 +53,12 @@ class SignIn extends Component {
               <h4>Password</h4>
             </Col>
             <Col sm={12}>
-              <FormControl {...password} className="" type="password" placeholder="Password" />
+              <FormControl {...password} type="password" placeholder="Password" />
             </Col>
           </FormGroup>
 
+          {this.renderAlert()}
           <ButtonGroup vertical block>
-            {/*{this.authButton()}*/}
             <Button type="submit" style={styles.baseButtonStyle}>Sign In</Button>
           </ButtonGroup>
         </Form>
@@ -81,13 +67,17 @@ class SignIn extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return { authenticated: state.authenticated };
-// }
-//
-// export default connect(mapStateToProps, { authenticate })(SignIn);
+Signin.propTypes = {
+  signinUser: PropTypes.func.isRequired,
+  fields: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error };
+}
 
 export default reduxForm({
-  form: 'SignIn',
+  form: 'signin',
   fields: ['email', 'password']
-})(SignIn);
+}, mapStateToProps, { signinUser })(Signin);

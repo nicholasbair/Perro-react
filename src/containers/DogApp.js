@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { openModal, openModalHistory, closeModal } from '../actions/index';
+import { openModal, openModalHistory, closeModal, fetchMessage } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import ActivityMenu from '../components/ActivityMenu';
 import DogCard from '../components/DogCard';
 import HistoryFeed from '../components/HistoryFeed';
 import ActivityModal from './ActivityModal';
 
-class App extends Component {
+class DogApp extends Component {
+  componentWillMount() {
+    this.props.fetchMessage();
+  }
+
   pullActivityDuration(name) {
     let data = this.props.history;
     let durations = [];
@@ -84,7 +88,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+DogApp.propTypes = {
   openModal: PropTypes.func.isRequired,
   openModalHistory: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
@@ -101,4 +105,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { openModal, openModalHistory, closeModal })(App);
+export default connect(mapStateToProps, { openModal, openModalHistory, closeModal, fetchMessage })(DogApp);
