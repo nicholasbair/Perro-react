@@ -24,6 +24,8 @@ The app provides a platform to log and track activities for pets (namely dogs).
 
 ###Future Plans###
 
+```
 -Integrate the Fitbit API to allow users to exercise events and assign them to a dog.
 -Allow multiple users to share an account.
 -Create goals and requirements--e.g. My goal is to walk the dogs 60 minutes per day.
+```
