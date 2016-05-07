@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { AUTH_USER } from './actions/types';
-import { fetchActivityTypes, fetchDogs } from './actions/index';
+import { fetchActivityTypes, fetchDogs, fetchHistory } from './actions/index';
 
 import Home from './components/Home';
 import App from './components/App';
@@ -28,6 +28,7 @@ if (token) {
 
 store.dispatch(fetchActivityTypes());
 store.dispatch(fetchDogs());
+store.dispatch(fetchHistory());
 
 ReactDOM.render(
   <Provider store={store}>

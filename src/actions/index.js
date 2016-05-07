@@ -5,8 +5,9 @@ import {
   OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
   POST_ACTIVITY,
-  FETCH_HISTORY,
   FETCH_HISTORY_ITEM,
+  FETCH_HISTORY_REQUEST,
+  FETCH_HISTORY_SUCCESS,
   FETCH_ACTIVITY_TYPES_REQUEST,
   FETCH_ACTIVITY_TYPES_SUCCESS,
   FETCH_DOGS_REQUEST,
@@ -17,6 +18,28 @@ import {
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
+
+function fetchHistoryRequest() {
+  return {
+    type: FETCH_HISTORY_REQUEST
+  };
+}
+
+export function fetchHistory() {
+  return dispatch => {
+    dispatch(fetchHistoryRequest())
+    return axios.get(`${ROOT_URL}/api/activity/findAll`).then(res => {
+      dispatch(fetchHistorySuccess(res.data))
+    });
+  }
+}
+
+function fetchHistorySuccess(history) {
+  return {
+    type: FETCH_HISTORY_SUCCESS,
+    payload: history
+  };
+}
 
 function fetchDogsRequest() {
   return {
@@ -148,12 +171,5 @@ export function postActivity(activity) {
   return {
     type: POST_ACTIVITY,
     payload: activity
-  };
-}
-
-export function fetchHistory(history) {
-  return {
-    type: FETCH_HISTORY,
-    payload: history
   };
 }

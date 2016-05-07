@@ -45,5 +45,5 @@ HistoryItem.propTypes = {
   activityType: PropTypes.string.isRequired,
   dog: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  activityId: PropTypes.number.isRequired
+  activityId: PropTypes.string.isRequired
 };

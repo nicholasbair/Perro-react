@@ -22,8 +22,8 @@ export default class HistoryFeed extends Component {
   renderHistoryItems() {
     return this.props.history.map((item) =>
       <HistoryItem
-        key={item.id}
-        activityId={item.id}
+        key={item._id}
+        activityId={item._id}
         activityType={item.type}
         dog={item.participant}
         value={item.value}

@@ -4,7 +4,7 @@ import {
   OPEN_MODAL,
   OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
-  FETCH_HISTORY,
+  FETCH_HISTORY_SUCCESS,
   FETCH_HISTORY_ITEM,
   POST_ACTIVITY
 } from '../actions/types';
@@ -46,8 +46,10 @@ export default function(state = INITIAL_STATE, action) {
         dogs: action.payload
       });
       break;
-    case FETCH_HISTORY:
-      return { ...state };
+    case FETCH_HISTORY_SUCCESS:
+      return Object.assign({}, state, {
+        history: action.payload
+      });
       break;
     case POST_ACTIVITY:
       return Object.assign({}, state, {
