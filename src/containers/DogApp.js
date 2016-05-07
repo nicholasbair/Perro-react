@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { openModal, openModalHistory, closeModal, fetchMessage } from '../actions/index';
 import { Grid, Row, Col } from 'react-bootstrap';
 import ActivityMenu from '../components/ActivityMenu';
 import DogCard from '../components/DogCard';
 import HistoryFeed from '../components/HistoryFeed';
 import ActivityModal from './ActivityModal';
+import {
+  openModal,
+  openModalHistory,
+  closeModal
+} from '../actions/index';
 
 class DogApp extends Component {
-  componentWillMount() {
-    this.props.fetchMessage();
-  }
-
   pullActivityDuration(name) {
     let data = this.props.history;
     let durations = [];
@@ -101,8 +101,10 @@ function mapStateToProps(state) {
   return {
     history: state.activities.history,
     activities: state.activities.activityTypes,
+    // activitiesNew: state.activities.activityTypesNew,
     dogs: state.activities.dogs
   };
 }
 
-export default connect(mapStateToProps, { openModal, openModalHistory, closeModal, fetchMessage })(DogApp);
+export default connect(mapStateToProps,
+  { openModal, openModalHistory, closeModal })(DogApp);

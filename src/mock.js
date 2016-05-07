@@ -1,26 +1,27 @@
 const INITIAL_STATE = {
-  activityTypes: [
-    {
-      id: 1,
-      type: 'walk'
-    },
-    {
-      id: 2,
-      type: 'run'
-    },
-    {
-      id: 3,
-      type: 'park'
-    },
-    {
-      id: 4,
-      type: 'meal'
-    },
-    {
-      id: 5,
-      type: 'vet'
-    }
-  ],
+  // activityTypes: [
+  //   {
+  //     id: 1,
+  //     type: 'walk'
+  //   },
+  //   {
+  //     id: 2,
+  //     type: 'run'
+  //   },
+  //   {
+  //     id: 3,
+  //     type: 'park'
+  //   },
+  //   {
+  //     id: 4,
+  //     type: 'meal'
+  //   },
+  //   {
+  //     id: 5,
+  //     type: 'vet'
+  //   }
+  // ],
+  activityTypes: [],
   dogs: [
     {
       id: 1,

@@ -4,9 +4,12 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 export const FETCH_HISTORY = 'FETCH_HISTORY';
 export const FETCH_HISTORY_ITEM = 'FETCH_HISTORY_ITEM';
-export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
 export const FETCH_DOGS = 'FETCH_DOGS';
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
-export const FETCH_MESSAGE = 'FETCH_MESSAGE';
+
+// --------------------------------------------------------
+// Wired up to the backend
+export const FETCH_ACTIVITY_TYPES_REQUEST = 'FETCH_ACTIVITY_TYPES_REQUEST';
+export const FETCH_ACTIVITY_TYPES_SUCCESS = 'FETCH_ACTIVITY_TYPES_SUCCESS';

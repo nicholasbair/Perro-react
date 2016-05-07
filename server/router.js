@@ -19,11 +19,11 @@ module.exports = function(app) {
   app.post('/signup', Authentication.signup);
 
   // Dog routes
-  app.get('api/dog/findAll', requireAuth, Dog.findAll);
-
-  // Activity type routes
-  app.get('api/activityType/findAll', requireAuth, ActivityType.findAll);
+  // TODO: add requireAuth back to routes
+  app.get('/api/dog/findAll', Dog.findAll);
 
   // Activity routes
-  app.get('api/activity/findAll', requireAuth, Activity.findAll);
+  // TODO: add requireAuth back to routes
+  app.get('/api/activityType/findAll', ActivityType.findAll);
+  app.get('/api/activity/findAll', Activity.findAll);
 };

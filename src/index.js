@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { AUTH_USER } from './actions/types';
+import { fetchActivityTypes } from './actions/index';
 
 import Home from './components/Home';
 import App from './components/App';
@@ -24,6 +25,8 @@ const token = localStorage.getItem('token');
 if (token) {
   store.dispatch({ type: AUTH_USER });
 }
+
+store.dispatch(fetchActivityTypes());
 
 ReactDOM.render(
   <Provider store={store}>

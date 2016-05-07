@@ -1,12 +1,11 @@
 const ActivityType = require('../models/activityType');
 
-exports.findAll = function(res, req, next) {
-  db.getCollection('activityTypes').find()
+exports.findAll = function(req, res, next) {
+  ActivityType.find()
   .then(activityTypes => {
-    console.log(activityTypes);
-    // res.json(activityTypes);
+    res.send(activityTypes);
   })
   .catch(err => {
-    res.send(err);
+    console.log(err);
   });
 }

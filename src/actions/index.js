@@ -7,15 +7,37 @@ import {
   POST_ACTIVITY,
   FETCH_HISTORY,
   FETCH_HISTORY_ITEM,
-  FETCH_ACTIVITIES,
+  FETCH_ACTIVITY_TYPES_REQUEST,
+  FETCH_ACTIVITY_TYPES_SUCCESS,
   FETCH_DOGS,
   AUTH_USER,
   UNAUTH_USER,
-  AUTH_ERROR,
-  FETCH_MESSAGE
+  AUTH_ERROR
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
+
+function fetchActivityTypesRequest() {
+  return {
+    type: FETCH_ACTIVITY_TYPES_REQUEST
+  };
+}
+
+export function fetchActivityTypes() {
+  return dispatch => {
+    dispatch(fetchActivityTypesRequest())
+    return axios.get(`${ROOT_URL}/api/activityType/findAll`).then(res => {
+      dispatch(fetchActivityTypesSuccess(res.data))
+    });
+  };
+}
+
+function fetchActivityTypesSuccess(activityTypes) {
+  return {
+    type: FETCH_ACTIVITY_TYPES_SUCCESS,
+    payload: activityTypes
+  };
+}
 
 export function signinUser({ email, password }) {
   return dispatch => {
@@ -65,13 +87,6 @@ export function authError(error) {
   };
 }
 
-export function authenticate(isLoggedIn) {
-  return {
-    type: CHANGE_AUTH,
-    payload: isLoggedIn
-  };
-}
-
 export function fetchMessage() {
   return dispatch => {
     axios.get(ROOT_URL, {
@@ -117,19 +132,5 @@ export function fetchHistory(history) {
   return {
     type: FETCH_HISTORY,
     payload: history
-  };
-}
-
-export function fetchActivities(activities) {
-  return {
-    type: FETCH_ACTIVITIES,
-    payload: activities
-  };
-}
-
-export function fetchDogs(activities) {
-  return {
-    type: FETCH_ACTIVITIES,
-    payload: activities
   };
 }

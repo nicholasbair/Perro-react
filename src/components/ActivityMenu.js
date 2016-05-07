@@ -5,7 +5,7 @@ export default class ActivityMenu extends Component {
     return this.props.activities.map((activity) =>
       <div
         className="activity-item"
-        key={activity.id}
+        key={activity._id}
         onClick={() => this.props.openModal(activity.type)}
       >
         <div className="activity-letter">{activity.type.charAt(0).toUpperCase()}</div>
