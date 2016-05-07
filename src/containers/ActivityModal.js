@@ -42,7 +42,7 @@ class ActivityModal extends Component {
     return this.props.dogs.map((dog) =>
       <Radio
         inline
-        key={dog.id}
+        key={dog._id}
         {...participant}
         value={dog.name}
         checked={participant.value === dog.name}

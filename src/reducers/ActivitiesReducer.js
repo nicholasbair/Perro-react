@@ -1,6 +1,6 @@
 import {
   FETCH_ACTIVITY_TYPES_SUCCESS,
-  FETCH_DOGS,
+  FETCH_DOGS_SUCCESS,
   OPEN_MODAL,
   OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
@@ -41,8 +41,10 @@ export default function(state = INITIAL_STATE, action) {
         activityTypes: action.payload
       });
       break;
-    case FETCH_DOGS:
-      return { ...state };
+    case FETCH_DOGS_SUCCESS:
+      return Object.assign({}, state, {
+        dogs: action.payload
+      });
       break;
     case FETCH_HISTORY:
       return { ...state };

@@ -9,13 +9,36 @@ import {
   FETCH_HISTORY_ITEM,
   FETCH_ACTIVITY_TYPES_REQUEST,
   FETCH_ACTIVITY_TYPES_SUCCESS,
-  FETCH_DOGS,
+  FETCH_DOGS_REQUEST,
+  FETCH_DOGS_SUCCESS,
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
+
+function fetchDogsRequest() {
+  return {
+    type: FETCH_DOGS_REQUEST
+  };
+}
+
+export function fetchDogs() {
+  return dispatch => {
+    dispatch(fetchDogsRequest())
+    return axios.get(`${ROOT_URL}/api/dog/findAll`).then(res => {
+      dispatch(fetchDogsSuccess(res.data))
+    });
+  }
+}
+
+function fetchDogsSuccess(dogs) {
+  return {
+    type: FETCH_DOGS_SUCCESS,
+    payload: dogs
+  };
+}
 
 function fetchActivityTypesRequest() {
   return {

@@ -32,7 +32,7 @@ class DogApp extends Component {
   renderDogCards() {
     return this.props.dogs.map((dog) =>
       <DogCard
-        key={dog.id}
+        key={dog._id}
         name={dog.name}
         tagline={dog.tagline}
         img={dog.img}

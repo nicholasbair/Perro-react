@@ -1,11 +1,11 @@
 const Dog = require('../models/dog');
 
 exports.findAll = function(req, res, next) {
-  db.getCollection('dogs').find()
+  Dog.find()
     .then(dogs => {
-      res.json(dogs);
+      res.send(dogs);
     })
     .catch(err => {
-      res.send(err);
+      console.log(err);
     });
 }
