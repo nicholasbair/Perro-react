@@ -11,13 +11,14 @@ If you're interested in learning React/Redux, I highly recommend Stephen Grider'
 ```
 - clone repo
 - cd into project directory
-- npm install
-- npm start
+- npm install (repeat for server directory)
+- npm start (repeat for server directory)
 ```
 
-**Please note, as of 5/5/2016 the server is not yet wired up to the client,
-to navigate to the you will need to manually enter the route in the browser.
-I plan to have the server wired up in the next few weeks.**
+**Please note, the app is currently setup to run using a locally hosted database. If you clone and install the repo, it will not function.**
+
+###See it in action###
+![gif of app](public/img/app-gif2.gif)
 
 ###What does the app do?###
 The app provides a platform to log and track activities for pets (namely dogs).
