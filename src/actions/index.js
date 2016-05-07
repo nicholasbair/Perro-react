@@ -4,7 +4,8 @@ import {
   OPEN_MODAL,
   OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
-  POST_ACTIVITY,
+  POST_ACTIVITY_REQUEST,
+  POST_ACTIVITY_SUCCESS,
   FETCH_HISTORY_ITEM,
   FETCH_HISTORY_REQUEST,
   FETCH_HISTORY_SUCCESS,
@@ -18,6 +19,28 @@ import {
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
+
+function postActivityRequest() {
+  return {
+    type: POST_ACTIVITY_REQUEST
+  };
+}
+
+export function postActivity(formData) {
+  return dispatch => {
+    dispatch(postActivityRequest())
+    return axios.post(`${ROOT_URL}/api/activity/add`, formData).then(res => {
+      dispatch(postActivitySuccess())
+      dispatch(fetchHistory())
+    })
+  }
+}
+
+function postActivitySuccess() {
+  return {
+    type: POST_ACTIVITY_REQUEST
+  };
+}
 
 function fetchHistoryRequest() {
   return {
@@ -164,12 +187,5 @@ export function openModalHistory(activityId) {
 export function closeModal() {
   return {
     type: CLOSE_MODAL
-  };
-}
-
-export function postActivity(activity) {
-  return {
-    type: POST_ACTIVITY,
-    payload: activity
   };
 }

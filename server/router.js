@@ -26,4 +26,5 @@ module.exports = function(app) {
   // TODO: add requireAuth back to routes
   app.get('/api/activityType/findAll', ActivityType.findAll);
   app.get('/api/activity/findAll', Activity.findAll);
+  app.post('/api/activity/add', Activity.add);
 };

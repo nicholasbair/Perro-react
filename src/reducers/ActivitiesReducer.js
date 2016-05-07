@@ -6,7 +6,8 @@ import {
   CLOSE_MODAL,
   FETCH_HISTORY_SUCCESS,
   FETCH_HISTORY_ITEM,
-  POST_ACTIVITY
+  // POST_ACTIVITY_REQUEST,
+  // POST_ACTIVITY_SUCCESS
 } from '../actions/types';
 
 import INITIAL_STATE from '../mock';
@@ -51,14 +52,14 @@ export default function(state = INITIAL_STATE, action) {
         history: action.payload
       });
       break;
-    case POST_ACTIVITY:
-      return Object.assign({}, state, {
-        showModal: false,
-        history: [
-          action.payload,
-          ...state.history
-        ]
-      });
+    // case POST_ACTIVITY:
+    //   return Object.assign({}, state, {
+    //     showModal: false,
+    //     history: [
+    //       action.payload,
+    //       ...state.history
+    //     ]
+    //   });
       break;
     default:
       return state;

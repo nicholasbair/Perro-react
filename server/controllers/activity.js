@@ -9,3 +9,17 @@ exports.findAll = function(req, res, next) {
       console.log(err);
     });
 }
+
+exports.add = function(req, res, next) {
+  var activity = new Activity({
+    type: req.body.type,
+    participant: req.body.participant,
+    value: req.body.value,
+    notes: req.body.notes
+  });
+  activity.save((activity) => {
+    res.send(activity);
+  }).catch(err => {
+    console.log(err);
+  });
+}
