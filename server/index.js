@@ -10,7 +10,7 @@ require('dotenv').config({ path: '../.env' });
 const cors = require('cors');
 
 // DB Setup
-mongoose.connect('mongodb://localhost:auth/auth');
+mongoose.connect('mongodb://localhost:perro/perro');
 
 // App Setup
 app.use(morgan('combined'));
