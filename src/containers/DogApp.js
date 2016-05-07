@@ -7,7 +7,7 @@ import HistoryFeed from '../components/HistoryFeed';
 import ActivityModal from './ActivityModal';
 import {
   openModal,
-  openModalHistory,
+  fetchHistoryItem,
   closeModal
 } from '../actions/index';
 
@@ -74,7 +74,7 @@ class DogApp extends Component {
             <Col xs={3} style={styles.historyFeed}>
               <HistoryFeed
                 history={this.props.history}
-                openModalHistory={this.props.openModalHistory}
+                fetchHistoryItem={this.props.fetchHistoryItem}
               />
             </Col>
           </Row>
@@ -90,7 +90,7 @@ class DogApp extends Component {
 
 DogApp.propTypes = {
   openModal: PropTypes.func.isRequired,
-  openModalHistory: PropTypes.func.isRequired,
+  fetchHistoryItem: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
   activities: PropTypes.array.isRequired,
@@ -101,10 +101,9 @@ function mapStateToProps(state) {
   return {
     history: state.activities.history,
     activities: state.activities.activityTypes,
-    // activitiesNew: state.activities.activityTypesNew,
     dogs: state.activities.dogs
   };
 }
 
 export default connect(mapStateToProps,
-  { openModal, openModalHistory, closeModal })(DogApp);
+  { openModal, fetchHistoryItem, closeModal })(DogApp);

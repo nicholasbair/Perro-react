@@ -2,12 +2,12 @@ const Activity = require('../models/activity');
 
 exports.findAll = function(req, res, next) {
   Activity.find()
-    .then(activities => {
-      res.send(activities);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  .then(activities => {
+    res.send(activities);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 }
 
 exports.add = function(req, res, next) {
@@ -20,6 +20,16 @@ exports.add = function(req, res, next) {
   activity.save((activity) => {
     res.send(activity);
   }).catch(err => {
+    console.log(err);
+  });
+}
+
+exports.findById = function(req, res, next) {
+  Activity.find({ _id: req.params.id })
+  .then(activity => {
+    res.send(activity);
+  })
+  .catch(err => {
     console.log(err);
   });
 }

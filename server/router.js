@@ -27,4 +27,5 @@ module.exports = function(app) {
   app.get('/api/activityType/findAll', ActivityType.findAll);
   app.get('/api/activity/findAll', Activity.findAll);
   app.post('/api/activity/add', Activity.add);
+  app.get('/api/activity/findById/:id', Activity.findById);
 };

@@ -202,7 +202,8 @@ const INITIAL_STATE = {
   // ],
   modal: {
     show: false,
-    type: null
+    activityType: null,
+    formData: null
   }
 };
 

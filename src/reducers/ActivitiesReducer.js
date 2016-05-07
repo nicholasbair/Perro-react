@@ -2,12 +2,9 @@ import {
   FETCH_ACTIVITY_TYPES_SUCCESS,
   FETCH_DOGS_SUCCESS,
   OPEN_MODAL,
-  OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
   FETCH_HISTORY_SUCCESS,
-  FETCH_HISTORY_ITEM,
-  // POST_ACTIVITY_REQUEST,
-  // POST_ACTIVITY_SUCCESS
+  FETCH_HISTORY_ITEM_SUCCESS,
 } from '../actions/types';
 
 import INITIAL_STATE from '../mock';
@@ -15,17 +12,12 @@ import INITIAL_STATE from '../mock';
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case OPEN_MODAL:
+      console.log(action.payload);
       return Object.assign({}, state, {
         modal: {
           show: true,
-          type: action.payload
-        }
-      });
-      break;
-    case OPEN_MODAL_HISTORY:
-      return Object.assign({}, state, {
-        modal: {
-          show: true
+          activityType: action.payload.activityType,
+          formData: action.payload.formData
         }
       });
       break;
@@ -33,7 +25,8 @@ export default function(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         modal: {
           show: false,
-          type: null
+          activityType: null,
+          formData: null
         }
       });
       break;
@@ -51,15 +44,6 @@ export default function(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         history: action.payload
       });
-      break;
-    // case POST_ACTIVITY:
-    //   return Object.assign({}, state, {
-    //     showModal: false,
-    //     history: [
-    //       action.payload,
-    //       ...state.history
-    //     ]
-    //   });
       break;
     default:
       return state;

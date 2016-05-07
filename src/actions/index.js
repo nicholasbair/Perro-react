@@ -6,7 +6,8 @@ import {
   CLOSE_MODAL,
   POST_ACTIVITY_REQUEST,
   POST_ACTIVITY_SUCCESS,
-  FETCH_HISTORY_ITEM,
+  FETCH_HISTORY_ITEM_REQUEST,
+  FETCH_HISTORY_ITEM_SUCCESS,
   FETCH_HISTORY_REQUEST,
   FETCH_HISTORY_SUCCESS,
   FETCH_ACTIVITY_TYPES_REQUEST,
@@ -20,6 +21,29 @@ import {
 
 const ROOT_URL = 'http://localhost:3090';
 
+function fetchHistoryItemRequest() {
+  return {
+    type: FETCH_HISTORY_ITEM_REQUEST
+  }
+}
+
+export function fetchHistoryItem(itemId) {
+  return dispatch => {
+    dispatch(fetchHistoryItemRequest())
+    return axios.get(`${ROOT_URL}/api/activity/findById/${itemId}`).then(res => {
+      dispatch(fetchHistoryItemSuccess(res.data))
+      dispatch(openModal({ activityType: res.data[0].type, formData: res.data }))
+    });
+  }
+}
+
+function fetchHistoryItemSuccess(item) {
+  return {
+    type: FETCH_HISTORY_ITEM_SUCCESS,
+    payload: item
+  };
+}
+
 function postActivityRequest() {
   return {
     type: POST_ACTIVITY_REQUEST
@@ -32,13 +56,13 @@ export function postActivity(formData) {
     return axios.post(`${ROOT_URL}/api/activity/add`, formData).then(res => {
       dispatch(postActivitySuccess())
       dispatch(fetchHistory())
-    })
+    });
   }
 }
 
 function postActivitySuccess() {
   return {
-    type: POST_ACTIVITY_REQUEST
+    type: POST_ACTIVITY_SUCCESS
   };
 }
 
@@ -156,31 +180,10 @@ export function authError(error) {
   };
 }
 
-export function fetchMessage() {
-  return dispatch => {
-    axios.get(ROOT_URL, {
-      headers: { authorization: localStorage.getItem('token') }
-    })
-      .then(response => {
-        dispatch({
-          type: FETCH_MESSAGE,
-          payload: response.data.message
-        });
-      });
-  };
-}
-
-export function openModal(activityType) {
+export function openModal({ activityType, formData = null }) {
   return {
     type: OPEN_MODAL,
-    payload: activityType
-  };
-}
-
-export function openModalHistory(activityId) {
-  return {
-    type: OPEN_MODAL_HISTORY,
-    payload: activityId
+    payload: { activityType, formData }
   };
 }
 

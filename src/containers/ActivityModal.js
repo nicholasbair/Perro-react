@@ -56,7 +56,8 @@ class ActivityModal extends Component {
     const {
       fields: { participant, assessment, value, notes },
       handleSubmit,
-      activityType
+      activityType,
+      formData
     } = this.props;
 
     let title;
@@ -66,31 +67,31 @@ class ActivityModal extends Component {
 
     switch (activityType) {
       case 'walk':
-        title = 'Add a walk';
+        title = formData !== null ? 'Update a walk' : 'Add a walk';
         participantLabel = 'Who did you walk?';
         valueLabel = 'How long did you walk (minutes)?';
         valuePlaceholder = 'Length';
         break;
       case 'run':
-        title = 'Add a run';
+        title = formData !== null ? 'Update a run' : 'Add a run';
         participantLabel = 'Who did you take for a run?';
         valueLabel = 'How long did you run (minutes)?';
         valuePlaceholder = 'Length';
         break;
       case 'park':
-        title = 'Add a visit to the park';
+        title = formData !== null ? 'Update a visit to the park' : 'Add a visit to the park';
         participantLabel = 'Who did you take with you?';
         valueLabel = 'How long did you stay (minutes)?';
         valuePlaceholder = 'Length';
         break;
       case 'meal':
-        title = 'Add a meal';
+        title = formData !== null ? 'Update a meal' : 'Add a meal';
         participantLabel = 'Who did you feed?';
         valueLabel = 'How many cups of food?';
         valuePlaceholder = 'Cups';
         break;
       case 'vet':
-        title = 'Add a vet visit';
+        title = formData !== null ? 'Update a vet visit' : 'Add a vet visit';
         participantLabel = 'Who did you take?';
         valueLabel = 'How much did it cost?';
         valuePlaceholder = '$$$';
@@ -190,7 +191,7 @@ class ActivityModal extends Component {
 
               <ButtonGroup vertical block>
                 <Button type="submit" style={styles.baseButtonStyle}>
-                  Add my activity!
+                  {formData !== null ? 'Update my activity!' : 'Add my activity!'}
                 </Button>
                 <Button
                   style={styles.cancelButtonStyle}
@@ -246,7 +247,8 @@ function validate(values) {
 function mapStateToProps(state) {
   return {
     showModal: state.activities.modal.show,
-    activityType: state.activities.modal.type,
+    activityType: state.activities.modal.activityType,
+    formData: state.activities.modal.formData,
     dogs: state.activities.dogs
   };
 }

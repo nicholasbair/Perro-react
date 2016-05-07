@@ -1,13 +1,14 @@
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const OPEN_MODAL_HISTORY = 'OPEN_MODAL_HISTORY';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
-export const FETCH_HISTORY_ITEM = 'FETCH_HISTORY_ITEM';
 
 // --------------------------------------------------------
 // Wired up to the backend
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const FETCH_HISTORY_ITEM_REQUEST = 'FETCH_HISTORY_ITEM_REQUEST';
+export const FETCH_HISTORY_ITEM_SUCCESS = 'FETCH_HISTORY_ITEM_SUCCESS';
 export const POST_ACTIVITY_REQUEST = 'POST_ACTIVITY_REQUEST';
 export const POST_ACTIVITY_SUCCESS = 'POST_ACTIVITY_SUCCESS';
 export const FETCH_ACTIVITY_TYPES_REQUEST = 'FETCH_ACTIVITY_TYPES_REQUEST';
