@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { postActivity } from '../actions/index';
+import { postActivity, updateActivity } from '../actions/index';
 import styles from '../../style/styles';
-import { reduxForm, change } from 'redux-form';
-import uuid from 'uuid-v4';
+import { reduxForm } from 'redux-form';
 import {
   Modal,
   Form,
@@ -15,9 +14,13 @@ import {
 } from 'react-bootstrap';
 
 class ActivityModal extends Component {
+  componentWillReceiveProps(newProps) {
+    console.log(newProps);
+  }
+
   onPostActivity() {
+    // Clean up data before sending to DB
     let data = this.props.values;
-    data.id = uuid();
     data.type = this.props.activityType;
     data.value = parseInt(data.value, 10);
 
@@ -25,14 +28,19 @@ class ActivityModal extends Component {
       data.notes = '';
     }
 
-    this.props.postActivity(data);
+    if (this.props.formType === 'post') {
+      this.props.postActivity(data);
+    } else {
+      this.props.updateActivity(data, this.props.formData._id);
+    }
+
     this.props.closeModal();
     this.props.resetForm();
   }
 
   cancelModal() {
     this.props.closeModal();
-    this.props.resetForm();
+    this.props.destroyForm();
   }
 
   renderDogRadios() {
@@ -56,13 +64,8 @@ class ActivityModal extends Component {
       fields: { participant, assessment, value, notes },
       handleSubmit,
       activityType,
-      formData,
-      changeFieldValue
+      initialValues
     } = this.props;
-
-    if (formData !== null) {
-      changeFieldValue(notes, formData[0].notes);
-    }
 
     let title;
     let participantLabel;
@@ -71,31 +74,31 @@ class ActivityModal extends Component {
 
     switch (activityType) {
       case 'walk':
-        title = formData !== null ? 'Update a walk' : 'Add a walk';
+        title = 'Add/update a walk';
         participantLabel = 'Who did you walk?';
         valueLabel = 'How long did you walk (minutes)?';
         valuePlaceholder = 'Length';
         break;
       case 'run':
-        title = formData !== null ? 'Update a run' : 'Add a run';
+        title = 'Add/update a run';
         participantLabel = 'Who did you take for a run?';
         valueLabel = 'How long did you run (minutes)?';
         valuePlaceholder = 'Length';
         break;
       case 'park':
-        title = formData !== null ? 'Update a visit to the park' : 'Add a visit to the park';
+        title = 'Add/update a visit to the park';
         participantLabel = 'Who did you take with you?';
         valueLabel = 'How long did you stay (minutes)?';
         valuePlaceholder = 'Length';
         break;
       case 'meal':
-        title = formData !== null ? 'Update a meal' : 'Add a meal';
+        title = 'Add/update a meal';
         participantLabel = 'Who did you feed?';
         valueLabel = 'How many cups of food?';
         valuePlaceholder = 'Cups';
         break;
       case 'vet':
-        title = formData !== null ? 'Update a vet visit' : 'Add a vet visit';
+        title = 'Add/update a vet visit';
         participantLabel = 'Who did you take?';
         valueLabel = 'How much did it cost?';
         valuePlaceholder = '$$$';
@@ -199,7 +202,7 @@ class ActivityModal extends Component {
 
               <ButtonGroup vertical block>
                 <Button type="submit" style={styles.baseButtonStyle}>
-                  {formData !== null ? 'Update my activity!' : 'Add my activity!'}
+                  Add/update my activity!
                 </Button>
                 <Button
                   style={styles.cancelButtonStyle}
@@ -222,11 +225,13 @@ ActivityModal.propTypes = {
   postActivity: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
+  destroyForm: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired,
   showModal: PropTypes.bool.isRequired,
   dogs: PropTypes.array.isRequired,
   values: PropTypes.object.isRequired,
-  activityType: PropTypes.string
+  activityType: PropTypes.string,
+  formData: PropTypes.object
 };
 
 function validate(values) {
@@ -252,15 +257,13 @@ function validate(values) {
   return errors;
 }
 
-function changeFieldValue(field, value) {
-  dispatch(change(form, field, value));
-}
-
 function mapStateToProps(state) {
   return {
     showModal: state.activities.modal.show,
     activityType: state.activities.modal.activityType,
+    initialValues: state.activities.modal.formData,
     formData: state.activities.modal.formData,
+    formType: state.activities.modal.formType,
     dogs: state.activities.dogs
   };
 }
@@ -269,4 +272,4 @@ export default reduxForm({
   form: 'ModalForm',
   fields: ['participant', 'assessment', 'value', 'notes'],
   validate
-}, mapStateToProps, { postActivity, changeFieldValue })(ActivityModal);
+}, mapStateToProps, { postActivity, updateActivity })(ActivityModal);

@@ -7,7 +7,7 @@ import {
   FETCH_HISTORY_ITEM_SUCCESS,
 } from '../actions/types';
 
-import INITIAL_STATE from '../mock';
+import INITIAL_STATE from '../INITIAL_STATE';
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -16,7 +16,8 @@ export default function(state = INITIAL_STATE, action) {
         modal: {
           show: true,
           activityType: action.payload.activityType,
-          formData: action.payload.formData
+          formData: action.payload.formData,
+          formType: action.payload.formType
         }
       });
     case CLOSE_MODAL:
@@ -24,7 +25,8 @@ export default function(state = INITIAL_STATE, action) {
         modal: {
           show: false,
           activityType: null,
-          formData: null
+          formData: null,
+          formType: null
         }
       });
     case FETCH_ACTIVITY_TYPES_SUCCESS:

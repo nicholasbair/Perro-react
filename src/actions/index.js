@@ -5,6 +5,8 @@ import {
   CLOSE_MODAL,
   POST_ACTIVITY_REQUEST,
   POST_ACTIVITY_SUCCESS,
+  UPDATE_ACTIVITY_REQUEST,
+  UPDATE_ACTIVITY_SUCCESS,
   FETCH_HISTORY_ITEM_REQUEST,
   FETCH_HISTORY_ITEM_SUCCESS,
   FETCH_HISTORY_REQUEST,
@@ -26,19 +28,22 @@ function fetchHistoryItemRequest() {
   };
 }
 
-function fetchHistoryItemSuccess(item) {
+function fetchHistoryItemSuccess() {
   return {
-    type: FETCH_HISTORY_ITEM_SUCCESS,
-    payload: item
+    type: FETCH_HISTORY_ITEM_SUCCESS
   };
 }
 
-export function fetchHistoryItem(itemId) {
+export function fetchHistoryItem(itemId, formType) {
   return dispatch => {
     dispatch(fetchHistoryItemRequest());
     return axios.get(`${ROOT_URL}/api/activity/findById/${itemId}`).then(res => {
-      dispatch(fetchHistoryItemSuccess(res.data));
-      dispatch(openModal({ activityType: res.data[0].type, formData: res.data }));
+      dispatch(fetchHistoryItemSuccess());
+      dispatch(openModal({
+        activityType: res.data[0].type,
+        formData: res.data[0],
+        formType: formType
+      }));
     });
   };
 }
@@ -62,7 +67,29 @@ export function postActivity(formData) {
       dispatch(postActivitySuccess());
       dispatch(fetchHistory());
     });
-  }
+  };
+}
+
+function updateActivityRequest() {
+  return {
+    type: UPDATE_ACTIVITY_REQUEST
+  };
+}
+
+function updateActivitySuccess() {
+  return {
+    type: UPDATE_ACTIVITY_SUCCESS
+  };
+}
+
+export function updateActivity(formData, itemId) {
+  return dispatch => {
+    dispatch(updateActivityRequest());
+    return axios.put(`${ROOT_URL}/api/activity/update/${itemId}`, formData).then(res => {
+      dispatch(updateActivitySuccess());
+      dispatch(fetchHistory());
+    });
+  };
 }
 
 function fetchHistoryRequest() {
@@ -179,10 +206,10 @@ export function signupUser({ email, password }) {
   };
 }
 
-export function openModal({ activityType, formData = null }) {
+export function openModal({ activityType, formData, formType }) {
   return {
     type: OPEN_MODAL,
-    payload: { activityType, formData }
+    payload: { activityType, formData, formType }
   };
 }
 

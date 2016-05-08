@@ -11,15 +11,36 @@ exports.findAll = function(req, res, next) {
 }
 
 exports.add = function(req, res, next) {
+  console.log(req.body);
   var activity = new Activity({
+    // _id: req.body._id,
     type: req.body.type,
     participant: req.body.participant,
+    assessment: req.body.assessment,
     value: req.body.value,
     notes: req.body.notes
   });
   activity.save((activity) => {
     res.send(activity);
   }).catch(err => {
+    console.log(err);
+  });
+}
+
+exports.update = function(req, res, next) {
+  Activity.findOne({ _id: req.params.id }, (err, doc) => {
+    doc.type = req.body.type;
+    doc.participant = req.body.participant;
+    doc.assessment = req.body.assessment;
+    doc.value = req.body.value;
+    doc.notes = req.body.notes;
+
+    doc.save();
+  })
+  .then(response => {
+    res.send(response);
+  })
+  .catch(err => {
     console.log(err);
   });
 }
