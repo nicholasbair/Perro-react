@@ -13,7 +13,6 @@ exports.findAll = function(req, res, next) {
 exports.add = function(req, res, next) {
   console.log(req.body);
   var activity = new Activity({
-    // _id: req.body._id,
     type: req.body.type,
     participant: req.body.participant,
     assessment: req.body.assessment,

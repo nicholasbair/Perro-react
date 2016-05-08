@@ -35,7 +35,7 @@ class ActivityModal extends Component {
     }
 
     this.props.closeModal();
-    this.props.resetForm();
+    this.props.destroyForm();
   }
 
   cancelModal() {
