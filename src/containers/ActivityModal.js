@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { postActivity } from '../actions/index';
 import styles from '../../style/styles';
-import { reduxForm } from 'redux-form';
+import { reduxForm, change } from 'redux-form';
 import uuid from 'uuid-v4';
-import cx from 'classnames';
 import {
   Modal,
   Form,
@@ -57,8 +56,13 @@ class ActivityModal extends Component {
       fields: { participant, assessment, value, notes },
       handleSubmit,
       activityType,
-      formData
+      formData,
+      changeFieldValue
     } = this.props;
+
+    if (formData !== null) {
+      changeFieldValue(notes, formData[0].notes);
+    }
 
     let title;
     let participantLabel;
@@ -185,7 +189,11 @@ class ActivityModal extends Component {
                   <h4>Any notes?</h4>
                 </Col>
                 <Col sm={12}>
-                  <FormControl type="notes" placeholder="Notes" {...notes} />
+                  <FormControl
+                    type="notes"
+                    placeholder="Notes"
+                    {...notes}
+                  />
                 </Col>
               </FormGroup>
 
@@ -244,6 +252,10 @@ function validate(values) {
   return errors;
 }
 
+function changeFieldValue(field, value) {
+  dispatch(change(form, field, value));
+}
+
 function mapStateToProps(state) {
   return {
     showModal: state.activities.modal.show,
@@ -257,4 +269,4 @@ export default reduxForm({
   form: 'ModalForm',
   fields: ['participant', 'assessment', 'value', 'notes'],
   validate
-}, mapStateToProps, { postActivity })(ActivityModal);
+}, mapStateToProps, { postActivity, changeFieldValue })(ActivityModal);

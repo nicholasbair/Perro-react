@@ -6,9 +6,7 @@ export default class HistoryFeed extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isHidden: false
-    };
+    this.state = { isHidden: false };
   }
 
   hideFeed() {

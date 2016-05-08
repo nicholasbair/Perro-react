@@ -1,5 +1,4 @@
 export const OPEN_MODAL = 'OPEN_MODAL';
-export const OPEN_MODAL_HISTORY = 'OPEN_MODAL_HISTORY';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // --------------------------------------------------------

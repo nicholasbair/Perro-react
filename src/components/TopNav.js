@@ -47,9 +47,9 @@ class TopNav extends Component {
   }
 }
 
-// Navbar.propTypes = {
-//   authenticated: PropTypes.bool.isRequired
-// };
+Navbar.propTypes = {
+  authenticated: PropTypes.bool.isRequired
+};
 
 function mapStateToProps(state) {
   return { authenticated: state.auth.authenticated };

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {
   OPEN_MODAL,
-  OPEN_MODAL_HISTORY,
   CLOSE_MODAL,
   POST_ACTIVITY_REQUEST,
   POST_ACTIVITY_SUCCESS,
@@ -24,17 +23,7 @@ const ROOT_URL = 'http://localhost:3090';
 function fetchHistoryItemRequest() {
   return {
     type: FETCH_HISTORY_ITEM_REQUEST
-  }
-}
-
-export function fetchHistoryItem(itemId) {
-  return dispatch => {
-    dispatch(fetchHistoryItemRequest())
-    return axios.get(`${ROOT_URL}/api/activity/findById/${itemId}`).then(res => {
-      dispatch(fetchHistoryItemSuccess(res.data))
-      dispatch(openModal({ activityType: res.data[0].type, formData: res.data }))
-    });
-  }
+  };
 }
 
 function fetchHistoryItemSuccess(item) {
@@ -44,20 +33,20 @@ function fetchHistoryItemSuccess(item) {
   };
 }
 
+export function fetchHistoryItem(itemId) {
+  return dispatch => {
+    dispatch(fetchHistoryItemRequest());
+    return axios.get(`${ROOT_URL}/api/activity/findById/${itemId}`).then(res => {
+      dispatch(fetchHistoryItemSuccess(res.data));
+      dispatch(openModal({ activityType: res.data[0].type, formData: res.data }));
+    });
+  };
+}
+
 function postActivityRequest() {
   return {
     type: POST_ACTIVITY_REQUEST
   };
-}
-
-export function postActivity(formData) {
-  return dispatch => {
-    dispatch(postActivityRequest())
-    return axios.post(`${ROOT_URL}/api/activity/add`, formData).then(res => {
-      dispatch(postActivitySuccess())
-      dispatch(fetchHistory())
-    });
-  }
 }
 
 function postActivitySuccess() {
@@ -66,19 +55,20 @@ function postActivitySuccess() {
   };
 }
 
+export function postActivity(formData) {
+  return dispatch => {
+    dispatch(postActivityRequest());
+    return axios.post(`${ROOT_URL}/api/activity/add`, formData).then(res => {
+      dispatch(postActivitySuccess());
+      dispatch(fetchHistory());
+    });
+  }
+}
+
 function fetchHistoryRequest() {
   return {
     type: FETCH_HISTORY_REQUEST
   };
-}
-
-export function fetchHistory() {
-  return dispatch => {
-    dispatch(fetchHistoryRequest())
-    return axios.get(`${ROOT_URL}/api/activity/findAll`).then(res => {
-      dispatch(fetchHistorySuccess(res.data))
-    });
-  }
 }
 
 function fetchHistorySuccess(history) {
@@ -88,19 +78,19 @@ function fetchHistorySuccess(history) {
   };
 }
 
+export function fetchHistory() {
+  return dispatch => {
+    dispatch(fetchHistoryRequest());
+    return axios.get(`${ROOT_URL}/api/activity/findAll`).then(res => {
+      dispatch(fetchHistorySuccess(res.data));
+    });
+  };
+}
+
 function fetchDogsRequest() {
   return {
     type: FETCH_DOGS_REQUEST
   };
-}
-
-export function fetchDogs() {
-  return dispatch => {
-    dispatch(fetchDogsRequest())
-    return axios.get(`${ROOT_URL}/api/dog/findAll`).then(res => {
-      dispatch(fetchDogsSuccess(res.data))
-    });
-  }
 }
 
 function fetchDogsSuccess(dogs) {
@@ -110,18 +100,18 @@ function fetchDogsSuccess(dogs) {
   };
 }
 
-function fetchActivityTypesRequest() {
-  return {
-    type: FETCH_ACTIVITY_TYPES_REQUEST
+export function fetchDogs() {
+  return dispatch => {
+    dispatch(fetchDogsRequest());
+    return axios.get(`${ROOT_URL}/api/dog/findAll`).then(res => {
+      dispatch(fetchDogsSuccess(res.data));
+    });
   };
 }
 
-export function fetchActivityTypes() {
-  return dispatch => {
-    dispatch(fetchActivityTypesRequest())
-    return axios.get(`${ROOT_URL}/api/activityType/findAll`).then(res => {
-      dispatch(fetchActivityTypesSuccess(res.data))
-    });
+function fetchActivityTypesRequest() {
+  return {
+    type: FETCH_ACTIVITY_TYPES_REQUEST
   };
 }
 
@@ -129,6 +119,22 @@ function fetchActivityTypesSuccess(activityTypes) {
   return {
     type: FETCH_ACTIVITY_TYPES_SUCCESS,
     payload: activityTypes
+  };
+}
+
+export function fetchActivityTypes() {
+  return dispatch => {
+    dispatch(fetchActivityTypesRequest());
+    return axios.get(`${ROOT_URL}/api/activityType/findAll`).then(res => {
+      dispatch(fetchActivityTypesSuccess(res.data));
+    });
+  };
+}
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
   };
 }
 
@@ -170,13 +176,6 @@ export function signupUser({ email, password }) {
       .catch((response) => {
         dispatch(authError(response.data.error));
       });
-  };
-}
-
-export function authError(error) {
-  return {
-    type: AUTH_ERROR,
-    payload: error
   };
 }
 

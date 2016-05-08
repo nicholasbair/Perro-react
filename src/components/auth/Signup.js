@@ -1,6 +1,15 @@
 import React, { Component, Proptypes } from 'react';
 import { reduxForm } from 'redux-form';
+import styles from '../../../style/styles';
 import { signupUser } from '../../actions/index';
+import {
+  Col,
+  Form,
+  FormGroup,
+  FormControl,
+  ButtonGroup,
+  Button
+} from 'react-bootstrap';
 
 class Signup extends Component {
   handleFormSubmit() {
@@ -22,31 +31,60 @@ class Signup extends Component {
   render() {
     const { fields: { email, password, passwordConfirm }, handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(() => this.handleFormSubmit())}>
-        <fieldset className="form-group">
-          <label>Email:</label>
-          <input className="form-control" {...email} />
-          {email.touched && email.error && <div className="error">{email.error}</div>}
-        </fieldset>
+      <div className="signup-form-container">
+        <Form className="signup-form" onSubmit={handleSubmit(() => this.handleFormSubmit())}>
+          <FormGroup>
+            <Col sm={12}>
+              <h2>Sign Up</h2>
+            </Col>
+          </FormGroup>
 
-        <fieldset className="form-group">
-          <label>Password:</label>
-          <input type="password" className="form-control" {...password} />
-          {password.touched && password.error && <div className="error">{password.error}</div>}
-        </fieldset>
+          <FormGroup>
+            <Col sm={12}>
+              <h4>Email</h4>
+            </Col>
+            <Col sm={12}>
+              <FormControl {...email} type="email" placeholder="Email" />
+            </Col>
+            {email.touched && email.error && <div className="error">{email.error}</div>}
+          </FormGroup>
 
-        <fieldset className="form-group">
-          <label>Confirm Password:</label>
-          <input type="password" className="form-control" {...passwordConfirm} />
-          {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
-        </fieldset>
+          <FormGroup>
+            <Col sm={12}>
+              <h4>Password</h4>
+            </Col>
+            <Col sm={12}>
+              <FormControl {...password} type="password" placeholder="Password" />
+            </Col>
+            {password.touched && password.error && <div className="error">{password.error}</div>}
+          </FormGroup>
 
-        {this.renderAlert()}
-        <button type="submit" className="btn btn-primary">Sign Up</button>
-      </form>
+          <FormGroup>
+            <Col sm={12}>
+              <h4>Confirm Password</h4>
+            </Col>
+            <Col sm={12}>
+              <FormControl {...passwordConfirm} type="password" placeholder="Confirm Password" />
+            </Col>
+            {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
+          </FormGroup>
+
+          {this.renderAlert()}
+          <ButtonGroup vertical block>
+            <Button type="submit" style={styles.baseButtonStyle}>Sign In</Button>
+          </ButtonGroup>
+        </Form>
+      </div>
     );
   }
 }
+
+Signup.propTypes = {
+  signupUser: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
+  fields: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired
+};
 
 function validate(formProps) {
   const errors = {};
