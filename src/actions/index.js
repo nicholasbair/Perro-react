@@ -9,6 +9,8 @@ import {
   UPDATE_ACTIVITY_SUCCESS,
   FETCH_HISTORY_ITEM_REQUEST,
   FETCH_HISTORY_ITEM_SUCCESS,
+  DELETE_HISTORY_ITEM_REQUEST,
+  DELETE_HISTORY_ITEM_SUCCESS,
   FETCH_HISTORY_REQUEST,
   FETCH_HISTORY_SUCCESS,
   FETCH_ACTIVITY_TYPES_REQUEST,
@@ -21,6 +23,29 @@ import {
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
+
+function deleteHistoryItemRequest() {
+  return {
+    type: DELETE_HISTORY_ITEM_REQUEST
+  };
+}
+
+function deleteHistoryItemSuccess() {
+  return {
+    type: DELETE_HISTORY_ITEM_SUCCESS
+  };
+}
+
+export function deleteHistoryItem(itemId) {
+  return dispatch => {
+    dispatch(deleteHistoryItemRequest());
+    axios.delete(`${ROOT_URL}/api/activity/delete/${itemId}`).then(res => {
+      dispatch(deleteHistoryItemRequest());
+      dispatch(closeModal());
+      dispatch(fetchHistory());
+    })
+  }
+}
 
 function fetchHistoryItemRequest() {
   return {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { postActivity, updateActivity } from '../actions/index';
+import { postActivity, updateActivity, deleteHistoryItem } from '../actions/index';
 import styles from '../../style/styles';
 import { reduxForm } from 'redux-form';
 import {
@@ -64,7 +64,8 @@ class ActivityModal extends Component {
       fields: { participant, assessment, value, notes },
       handleSubmit,
       activityType,
-      initialValues
+      initialValues,
+      deleteHistoryItem
     } = this.props;
 
     let title;
@@ -210,6 +211,14 @@ class ActivityModal extends Component {
                 >
                   Cancel
                 </Button>
+                {this.props.formType === 'update' ?
+                  <Button
+                    style={styles.cancelButtonStyle}
+                    onClick={() => deleteHistoryItem(this.props.formData._id)}
+                  >
+                    Delete activity
+                  </Button>
+                : ''}
               </ButtonGroup>
 
             </Form>
@@ -224,6 +233,7 @@ ActivityModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   postActivity: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  deleteHistoryItem: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
   destroyForm: PropTypes.func.isRequired,
   fields: PropTypes.object.isRequired,
@@ -272,4 +282,4 @@ export default reduxForm({
   form: 'ModalForm',
   fields: ['participant', 'assessment', 'value', 'notes'],
   validate
-}, mapStateToProps, { postActivity, updateActivity })(ActivityModal);
+}, mapStateToProps, { postActivity, updateActivity, deleteHistoryItem })(ActivityModal);

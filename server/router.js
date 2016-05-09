@@ -29,4 +29,5 @@ module.exports = function(app) {
   app.post('/api/activity/add', Activity.add);
   app.get('/api/activity/findById/:id', Activity.findById);
   app.put('/api/activity/update/:id', Activity.update);
+  app.delete('/api/activity/delete/:id', Activity.delete);
 };

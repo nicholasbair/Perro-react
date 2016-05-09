@@ -53,3 +53,13 @@ exports.findById = function(req, res, next) {
     console.log(err);
   });
 }
+
+exports.delete = function(req, res, next) {
+  Activity.findOneAndRemove({ _id: req.params.id })
+  .then(response => {
+    res.send(response);
+  })
+  .catch(err => {
+    res.send(err);
+  });
+}

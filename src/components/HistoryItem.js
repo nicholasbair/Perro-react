@@ -34,7 +34,7 @@ export default class HistoryItem extends Component {
     return (
       <div className="history-item" onClick={() => this.props.fetchHistoryItem(this.props.activityId, 'update')}>
         <img className="user-avatar" src="./public/img/user.jpg" alt="user avatar"></img>
-        {desc}
+        <span className="history-item-text">{desc}</span>
       </div>
     );
   }
