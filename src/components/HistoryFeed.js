@@ -18,7 +18,8 @@ export default class HistoryFeed extends Component {
   }
 
   renderHistoryItems() {
-    return this.props.history.map((item) =>
+    let reversedHistory = this.props.history.reverse();
+    return reversedHistory.map((item) =>
       <HistoryItem
         key={item._id}
         activityId={item._id}
