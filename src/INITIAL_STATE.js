@@ -2,9 +2,14 @@ const INITIAL_STATE = {
   activityTypes: [],
   dogs: [],
   history: [],
-  modal: {
+  activityModal: {
     show: false,
     activityType: null,
+    formData: null,
+    formType: null
+  },
+  dogModal: {
+    show: false,
     formData: null,
     formType: null
   }

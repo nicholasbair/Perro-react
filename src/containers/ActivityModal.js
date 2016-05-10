@@ -30,12 +30,12 @@ class ActivityModal extends Component {
       this.props.updateActivity(data, this.props.formData._id);
     }
 
-    this.props.closeModal();
+    this.props.closeActivityModal();
     this.props.destroyForm();
   }
 
   cancelModal() {
-    this.props.closeModal();
+    this.props.closeActivityModal();
     this.props.destroyForm();
   }
 
@@ -223,7 +223,7 @@ class ActivityModal extends Component {
 }
 
 ActivityModal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
+  closeActivityModal: PropTypes.func.isRequired,
   postActivity: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   deleteHistoryItem: PropTypes.func.isRequired,
@@ -262,11 +262,11 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    showModal: state.activities.modal.show,
-    activityType: state.activities.modal.activityType,
-    initialValues: state.activities.modal.formData,
-    formData: state.activities.modal.formData,
-    formType: state.activities.modal.formType,
+    showModal: state.activities.activityModal.show,
+    activityType: state.activities.activityModal.activityType,
+    initialValues: state.activities.activityModal.formData,
+    formData: state.activities.activityModal.formData,
+    formType: state.activities.activityModal.formType,
     dogs: state.activities.dogs
   };
 }

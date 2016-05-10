@@ -5,11 +5,13 @@ import ActivityMenu from '../components/ActivityMenu';
 import DogCard from '../components/DogCard';
 import HistoryFeed from '../components/HistoryFeed';
 import ActivityModal from './ActivityModal';
+import DogModal from './DogModal';
 import {
-  openModal,
+  openActivityModal,
   fetchHistoryItem,
-  closeModal
+  closeActivityModal
 } from '../actions/index';
+import { openDogModal, closeDogModal } from '../actions/dogs';
 
 class DogApp extends Component {
   pullActivityDuration(name) {
@@ -63,7 +65,7 @@ class DogApp extends Component {
             <Col xs={1} style={styles.activityMenu}>
               <ActivityMenu
                 activities={this.props.activities}
-                openModal={this.props.openModal}
+                openActivityModal={this.props.openActivityModal}
               />
             </Col>
             <Col xs={8} style={styles.fullHeight}>
@@ -80,8 +82,11 @@ class DogApp extends Component {
           </Row>
         </Grid>
         <ActivityModal
-          closeModal={this.props.closeModal}
+          closeActivityModal={this.props.closeActivityModal}
           dogs={this.props.dogs}
+        />
+        <DogModal
+          closeDogModal={this.props.closeDogModal}
         />
       </div>
     );
@@ -89,9 +94,9 @@ class DogApp extends Component {
 }
 
 DogApp.propTypes = {
-  openModal: PropTypes.func.isRequired,
+  openActivityModal: PropTypes.func.isRequired,
   fetchHistoryItem: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
+  closeActivityModal: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
   activities: PropTypes.array.isRequired,
   dogs: PropTypes.array.isRequired
@@ -106,4 +111,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps,
-  { openModal, fetchHistoryItem, closeModal })(DogApp);
+  { openActivityModal, fetchHistoryItem, closeActivityModal, openDogModal, closeDogModal })(DogApp);

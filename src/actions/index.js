@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {
-  OPEN_MODAL,
-  CLOSE_MODAL,
+  OPEN_ACTIVITY_MODAL,
+  CLOSE_ACTIVITY_MODAL,
   POST_ACTIVITY_REQUEST,
   POST_ACTIVITY_SUCCESS,
   UPDATE_ACTIVITY_REQUEST,
@@ -14,12 +14,7 @@ import {
   FETCH_HISTORY_REQUEST,
   FETCH_HISTORY_SUCCESS,
   FETCH_ACTIVITY_TYPES_REQUEST,
-  FETCH_ACTIVITY_TYPES_SUCCESS,
-  FETCH_DOGS_REQUEST,
-  FETCH_DOGS_SUCCESS,
-  AUTH_USER,
-  UNAUTH_USER,
-  AUTH_ERROR
+  FETCH_ACTIVITY_TYPES_SUCCESS
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -41,7 +36,7 @@ export function deleteHistoryItem(itemId) {
     dispatch(deleteHistoryItemRequest());
     axios.delete(`${ROOT_URL}/api/activity/delete/${itemId}`).then(res => {
       dispatch(deleteHistoryItemRequest());
-      dispatch(closeModal());
+      dispatch(closeActivityModal());
       dispatch(fetchHistory());
     })
   }
@@ -64,7 +59,7 @@ export function fetchHistoryItem(itemId, formType) {
     dispatch(fetchHistoryItemRequest());
     return axios.get(`${ROOT_URL}/api/activity/findById/${itemId}`).then(res => {
       dispatch(fetchHistoryItemSuccess());
-      dispatch(openModal({
+      dispatch(openActivityModal({
         activityType: res.data[0].type,
         formData: res.data[0],
         formType: formType
@@ -139,28 +134,6 @@ export function fetchHistory() {
   };
 }
 
-function fetchDogsRequest() {
-  return {
-    type: FETCH_DOGS_REQUEST
-  };
-}
-
-function fetchDogsSuccess(dogs) {
-  return {
-    type: FETCH_DOGS_SUCCESS,
-    payload: dogs
-  };
-}
-
-export function fetchDogs() {
-  return dispatch => {
-    dispatch(fetchDogsRequest());
-    return axios.get(`${ROOT_URL}/api/dog/findAll`).then(res => {
-      dispatch(fetchDogsSuccess(res.data));
-    });
-  };
-}
-
 function fetchActivityTypesRequest() {
   return {
     type: FETCH_ACTIVITY_TYPES_REQUEST
@@ -183,63 +156,15 @@ export function fetchActivityTypes() {
   };
 }
 
-export function authError(error) {
+export function openActivityModal({ activityType, formData, formType }) {
   return {
-    type: AUTH_ERROR,
-    payload: error
-  };
-}
-
-export function signinUser({ email, password }) {
-  return dispatch => {
-    // Submit email/password to server
-    axios.post(`${ROOT_URL}/signin`, { email, password })
-      .then(response => {
-      // If req is good:
-        // update state to indicate auth'ed user
-        dispatch({ type: AUTH_USER });
-        // Save JWT token
-        localStorage.setItem('token', response.data.token);
-        // Redirect to app
-        browserHistory.push('/dog-app');
-      })
-      .catch(() => {
-        // If req is bad
-          // Show an error to the user
-        dispatch(authError('Bad Login Info'));
-      });
-  };
-}
-
-export function signoutUser() {
-  // Remove JWT token
-  localStorage.removeItem('token');
-  return { type: UNAUTH_USER };
-}
-
-export function signupUser({ email, password }) {
-  return dispatch => {
-    axios.post(`${ROOT_URL}/signup`, { email, password })
-      .then(response => {
-        dispatch({ type: AUTH_USER });
-        localStorage.setItem('token', response.data.token);
-        browserHistory.push('/dog-app');
-      })
-      .catch((response) => {
-        dispatch(authError(response.data.error));
-      });
-  };
-}
-
-export function openModal({ activityType, formData, formType }) {
-  return {
-    type: OPEN_MODAL,
+    type: OPEN_ACTIVITY_MODAL,
     payload: { activityType, formData, formType }
   };
 }
 
-export function closeModal() {
+export function closeActivityModal() {
   return {
-    type: CLOSE_MODAL
+    type: CLOSE_ACTIVITY_MODAL
   };
 }

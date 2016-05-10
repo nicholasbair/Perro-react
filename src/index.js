@@ -5,7 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { AUTH_USER } from './actions/types';
-import { fetchActivityTypes, fetchDogs, fetchHistory } from './actions/index';
+import { fetchActivityTypes, fetchHistory } from './actions/index';
+import { fetchDogs } from './actions/dogs';
 
 import Home from './components/Home';
 import App from './components/App';
