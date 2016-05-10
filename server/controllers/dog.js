@@ -24,7 +24,7 @@ exports.add = (req, res, next)  => {
   });
 }
 
-exports.update = (res, req, next) => {
+exports.update = (req, res, next) => {
   Dog.findOne({ _id: req.params.id }, (err, dog) => {
     dog.name = req.body.name;
     dog.tagline = req.body.tagline;

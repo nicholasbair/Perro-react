@@ -22,9 +22,9 @@ module.exports = function(app) {
   // TODO: add requireAuth back to routes
   app.get('/api/dog/findAll', Dog.findAll);
   app.post('/api/dog/add', Dog.add);
-  app.put('/api/dog/update.:id', Dog.update);
+  app.put('/api/dog/update/:id', Dog.update);
   app.get('/api/dog/findById/:id', Dog.findById);
-  app.delete('api/dog/delete/:id', Dog.delete);
+  app.delete('/api/dog/delete/:id', Dog.delete);
 
   // Activity routes
   // TODO: add requireAuth back to routes

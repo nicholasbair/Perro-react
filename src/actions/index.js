@@ -35,11 +35,11 @@ export function deleteHistoryItem(itemId) {
   return dispatch => {
     dispatch(deleteHistoryItemRequest());
     axios.delete(`${ROOT_URL}/api/activity/delete/${itemId}`).then(res => {
-      dispatch(deleteHistoryItemRequest());
+      dispatch(deleteHistoryItemSuccess());
       dispatch(closeActivityModal());
       dispatch(fetchHistory());
-    })
-  }
+    });
+  };
 }
 
 function fetchHistoryItemRequest() {

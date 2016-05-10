@@ -47,7 +47,7 @@ class DogModal extends Component {
           aria-labelledby="modal-label"
           style={styles.modalStyle}
           backdropStyle={styles.backdropStyle}
-          show={this.props.showModal}
+          show={this.props.showDogModal}
           onHide={this.close}
         >
           <div style={styles.dialogStyle}>
@@ -119,7 +119,7 @@ class DogModal extends Component {
                 {this.props.formType === 'update' ?
                   <Button
                     style={styles.deleteButtonStyle}
-                    onClick={() => deleteDog(this.props.formData._id)}
+                    onClick={() => this.props.deleteDog(this.props.formData._id)}
                   >
                     <span className="glyphicon glyphicon-remove-circle"></span> Delete dog
                   </Button>
@@ -134,20 +134,17 @@ class DogModal extends Component {
   }
 }
 
-// ActivityModal.propTypes = {
-//   closeModal: PropTypes.func.isRequired,
-//   postActivity: PropTypes.func.isRequired,
-//   handleSubmit: PropTypes.func.isRequired,
-//   deleteHistoryItem: PropTypes.func.isRequired,
-//   resetForm: PropTypes.func.isRequired,
-//   destroyForm: PropTypes.func.isRequired,
-//   fields: PropTypes.object.isRequired,
-//   showModal: PropTypes.bool.isRequired,
-//   dogs: PropTypes.array.isRequired,
-//   values: PropTypes.object.isRequired,
-//   activityType: PropTypes.string,
-//   formData: PropTypes.object
-// };
+DogModal.propTypes = {
+  closeDogModal: PropTypes.func.isRequired,
+  postDog: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  deleteDog: PropTypes.func.isRequired,
+  destroyForm: PropTypes.func.isRequired,
+  fields: PropTypes.object.isRequired,
+  showDogModal: PropTypes.bool.isRequired,
+  values: PropTypes.object.isRequired,
+  formData: PropTypes.object
+};
 
 function validate(values) {
   const errors = {};
@@ -169,10 +166,10 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    showDogModal: state.activities.dogModal.show,
-    // initialValues: state.activities.modal.formData,
-    // formData: state.activities.dogModal.formData,
-    formType: state.activities.dogModal.formType,
+    showDogModal: state.dogs.dogModal.show,
+    initialValues: state.dogs.dogModal.formData,
+    formData: state.dogs.dogModal.formData,
+    formType: state.dogs.dogModal.formType,
   };
 }
 

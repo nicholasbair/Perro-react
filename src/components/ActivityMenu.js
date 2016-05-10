@@ -18,6 +18,10 @@ export default class ActivityMenu extends Component {
     return (
       <div className="activity-menu">
         {this.renderMenuItems()}
+        <div className="activity-item" onClick={() => this.props.openDogModal({ formType: 'post' })}>
+          <div className="activity-letter">D</div>
+          <div className="activity-word">dog</div>
+        </div>
       </div>
     );
   }

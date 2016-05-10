@@ -12,7 +12,7 @@ export default class DogCard extends Component {
     let img = `./public/img/${this.props.img}`;
 
     return (
-      <div>
+      <div onClick={() => this.props.fetchDog(this.props.dogId, 'update')}>
         <Col xs={4} className="dog-card">
           <Row>
             <Col xs={5}>
@@ -41,7 +41,7 @@ export default class DogCard extends Component {
 }
 
 DogCard.propTypes = {
-  durations: PropTypes.array.isRequired,
+  fetchDog: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired

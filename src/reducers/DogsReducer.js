@@ -24,10 +24,10 @@ export default function(state = INITIAL_STATE, action) {
           formType: null
         }
       });
-    case FETCH_DOGS_SUCCESS:
-      return Object.assign({}, state, {
-        dogs: action.payload
-      });
+    // case FETCH_DOGS_SUCCESS:
+    //   return Object.assign({}, state, {
+    //     dogs: action.payload
+    //   });
     default:
       return state;
   }

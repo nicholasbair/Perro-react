@@ -11,7 +11,7 @@ import {
   fetchHistoryItem,
   closeActivityModal
 } from '../actions/index';
-import { openDogModal, closeDogModal } from '../actions/dogs';
+import { openDogModal, closeDogModal, fetchDog } from '../actions/dogs';
 
 class DogApp extends Component {
   pullActivityDuration(name) {
@@ -35,9 +35,11 @@ class DogApp extends Component {
     return this.props.dogs.map((dog) =>
       <DogCard
         key={dog._id}
+        dogId={dog._id}
         name={dog.name}
         tagline={dog.tagline}
         img={dog.img}
+        fetchDog={this.props.fetchDog}
         durations={this.pullActivityDuration(dog.name)}
       />
     );
@@ -66,6 +68,7 @@ class DogApp extends Component {
               <ActivityMenu
                 activities={this.props.activities}
                 openActivityModal={this.props.openActivityModal}
+                openDogModal={this.props.openDogModal}
               />
             </Col>
             <Col xs={8} style={styles.fullHeight}>
@@ -111,4 +114,10 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps,
-  { openActivityModal, fetchHistoryItem, closeActivityModal, openDogModal, closeDogModal })(DogApp);
+  { openActivityModal,
+    fetchHistoryItem,
+    closeActivityModal,
+    fetchDog,
+    openDogModal,
+    closeDogModal
+  })(DogApp);
