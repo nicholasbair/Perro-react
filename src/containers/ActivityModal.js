@@ -14,10 +14,6 @@ import {
 } from 'react-bootstrap';
 
 class ActivityModal extends Component {
-  componentWillReceiveProps(newProps) {
-    console.log(newProps);
-  }
-
   onPostActivity() {
     // Clean up data before sending to DB
     let data = this.props.values;
@@ -69,38 +65,35 @@ class ActivityModal extends Component {
     } = this.props;
 
     let title;
-    let participantLabel;
+    let titleStub = 'Add/update a';
+    let takeStub = 'Who did you take'
+    let participantLabel = `${takeStub}?`;
     let valueLabel;
-    let valuePlaceholder;
+    let valuePlaceholder = 'Length';
 
     switch (activityType) {
       case 'walk':
-        title = 'Add/update a walk';
+        title = `${titleStub} ${activityType}`;
         participantLabel = 'Who did you walk?';
         valueLabel = 'How long did you walk (minutes)?';
-        valuePlaceholder = 'Length';
         break;
       case 'run':
-        title = 'Add/update a run';
-        participantLabel = 'Who did you take for a run?';
+        title = `${titleStub} ${activityType}`;
+        participantLabel = `${takeStub} for a run?`;
         valueLabel = 'How long did you run (minutes)?';
-        valuePlaceholder = 'Length';
         break;
       case 'park':
         title = 'Add/update a visit to the park';
-        participantLabel = 'Who did you take with you?';
         valueLabel = 'How long did you stay (minutes)?';
-        valuePlaceholder = 'Length';
         break;
       case 'meal':
         title = 'Add/update a meal';
         participantLabel = 'Who did you feed?';
-        valueLabel = 'How many cups of food?';
+        valueLabel = 'How many cup(s) of food?';
         valuePlaceholder = 'Cups';
         break;
       case 'vet':
         title = 'Add/update a vet visit';
-        participantLabel = 'Who did you take?';
         valueLabel = 'How much did it cost?';
         valuePlaceholder = '$$$';
         break;
@@ -213,10 +206,10 @@ class ActivityModal extends Component {
                 </Button>
                 {this.props.formType === 'update' ?
                   <Button
-                    style={styles.cancelButtonStyle}
+                    style={styles.deleteButtonStyle}
                     onClick={() => deleteHistoryItem(this.props.formData._id)}
                   >
-                    Delete activity
+                    <span className="glyphicon glyphicon-remove-circle"></span> Delete activity
                   </Button>
                 : ''}
               </ButtonGroup>

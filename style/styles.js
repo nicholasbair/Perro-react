@@ -38,6 +38,13 @@ const styles = {
     marginTop: '10px'
   },
 
+  deleteButtonStyle: {
+    backgroundColor: '#CCCCCC',
+    border: '1px solid #AA3939',
+    color: '#AA3939',
+    marginTop: '10px'
+  },
+
   noPad: {
     paddingLeft: 0
   }
