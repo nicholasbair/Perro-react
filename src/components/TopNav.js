@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-// import { authenticate } from '../actions/index';
 
 class TopNav extends Component {
   renderSignLinks() {
@@ -12,6 +11,9 @@ class TopNav extends Component {
         <Nav pullRight>
           <li className="nav-item">
             <Link className="nav-link" to="/signout">Sign Out</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/dog-app">the App</Link>
           </li>
         </Nav>
       );

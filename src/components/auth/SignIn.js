@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { signinUser } from '../../actions/index';
+import { signinUser } from '../../actions/auth';
 import styles from '../../../style/styles';
 import { reduxForm } from 'redux-form';
 import {

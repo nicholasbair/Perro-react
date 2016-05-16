@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { signoutUser } from '../../actions/index';
+import { signoutUser } from '../../actions/auth';
 import { Jumbotron, Button } from 'react-bootstrap';
 
 class Signout extends Component {
