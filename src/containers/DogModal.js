@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { postDog, updateDog, deleteDog } from '../actions/dogs';
 import styles from '../../style/styles';
 import { reduxForm } from 'redux-form';
+import Dropzone from 'react-dropzone';
 import {
   Modal,
   Form,
@@ -95,11 +96,9 @@ class DogModal extends Component {
                   <h4>Image</h4>
                 </Col>
                 <Col sm={12}>
-                  <FormControl
-                    type="img"
-                    placeholder="image"
-                    {...img}
-                  />
+                  <Dropzone {...img} onDrop={(filesToUpload) => img.onChange(filesToUpload)}>
+                    <div>Drag and drop a pic of your dog</div>
+                  </Dropzone>
                 </Col>
                 <Col sm={12}>
                   <div className="text-help">{img.touched ? img.error : ''}</div>
