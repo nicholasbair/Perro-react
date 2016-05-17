@@ -18,7 +18,7 @@ If you're interested in learning React/Redux, I highly recommend Stephen Grider'
 **Please note, the app is currently setup to run using a locally hosted database. If you clone and install the repo, it will not function.**
 
 ###See it in action###
-![gif of app](public/img/app-gif2.gif)
+![gif of app](public/img/app-gif.gif)
 
 ###What does the app do?###
 The app provides a platform to log and track activities for pets (namely dogs).
